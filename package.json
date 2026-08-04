@@ -1,0 +1,13 @@
+{
+  "name": "installation-kunsthaus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Visitor information for Utobot × Dystobot, Aargauer Kunsthaus",
+  "scripts": {
+    "site": "node site/build.js",
+    "qr": "node site/qr.js"
+  },
+  "devDependencies": {
+    "qrcode": "^1.5.4"
+  }
+}
