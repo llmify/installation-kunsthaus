@@ -73,7 +73,7 @@ function diagram(d) {
     `<circle class="d-badge" cx="${x}" cy="${y}" r="9.5"/>` +
     `<text class="d-badge-text" x="${x}" y="${y + 4}" text-anchor="middle">${n}</text>`;
 
-  return `<svg viewBox="0 0 500 312" role="img" aria-label="${esc(d.aria)}">
+  return `<svg viewBox="0 0 500 322" role="img" aria-label="${esc(d.aria)}">
   <text class="d-caption" x="80" y="12" text-anchor="middle">${esc(d.caption).toUpperCase()}</text>
   ${dot(80, 30, 1)}${label(80, 55, d.audio)}
   ${down(80, 66, 100, 2)}${badge(105, 84, 1)}
@@ -84,8 +84,8 @@ function diagram(d) {
   ${dot(250, 202, 7)}${label(250, 227, d.text)}
   ${right(202, 270, 400, 8)}${badge(335, 184, 4)}
   ${dot(420, 202, 9)}${label(420, 227, d.stimme)}
-  ${down(250, 238, 270, 8)}${badge(275, 254, 5)}
-  ${dot(250, 278, 9)}${label(250, 303, d.bild)}
+  ${down(250, 238, 272, 8)}${badge(275, 254, 5)}
+  ${dot(250, 288, 9)}${label(250, 313, d.bild)}
 </svg>`;
 }
 
@@ -201,7 +201,7 @@ const BODIES = { home: homeBody, ideas: ideasBody, tech: techBody };
 
 function render(locale, page) {
   const c = locale[page];
-  const title = page === 'home' ? c.title : `${c.title} — Utobot × Dystobot`;
+  const title = page === 'home' ? c.title : `${c.title} · Utobot × Dystobot`;
 
   const nav = PAGES.map((p) => {
     const current = p === page;
@@ -232,7 +232,7 @@ function render(locale, page) {
   // as URLs a reader can type — on one line, without the protocol nobody types.
   const bare = SITE_BASE.replace(/^https?:\/\//, '');
   const printedLinks = PAGES.filter((p) => p !== page)
-    .map((p) => `${esc(locale.navLabels[p])} — ${bare}${pathOf(locale, p)}`)
+    .map((p) => `${esc(locale.navLabels[p])}: ${bare}${pathOf(locale, p)}`)
     .join(' &nbsp;·&nbsp; ');
 
   return `<!DOCTYPE html>

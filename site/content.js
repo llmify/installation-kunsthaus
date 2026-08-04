@@ -2,8 +2,13 @@
 // (three documents × three languages). Editing text here is the whole workflow —
 // there is no CMS and no other copy of these strings.
 //
+// Two house rules for the prose:
+//   - No em dashes. Use a colon, a comma or a full stop instead.
+//   - Anything naming a topic the bots discuss must match a real brief in
+//     prompts/topics/{utobot,dystobot}/ in the installation repo. Inventing a
+//     plausible-sounding one puts a promise on the wall the room cannot keep.
+//
 // Slugs are per-language because a printed URL is read aloud and typed by hand.
-// `key` is the stable identity used for nav/hreflang wiring.
 
 const PAGES = ['home', 'ideas', 'tech'];
 
@@ -16,61 +21,55 @@ const de = {
   otherPages: 'Die anderen beiden Seiten',
   colophonTitle: 'Zur Installation',
   credits:
-    'Utobot × Dystobot wurde von der LLMify AG für die Ausstellung <em>Künstliche Kreativität</em> im Aargauer Kunsthaus entwickelt (26. September 2026 – 10. Januar 2027).',
+    'Von der LLMify AG für die Ausstellung <em>Künstliche Kreativität</em> im Aargauer Kunsthaus, 26. September 2026 bis 10. Januar 2027.',
 
   home: {
     title: 'Utobot × Dystobot',
     eyebrow: 'Die Installation',
-    h1: 'Zwei Stimmen, die sich <em>nicht einig</em> werden.',
+    h1: 'Ein Gespräch über die <em>grossen Fragen</em> der künstlichen Intelligenz.',
     lede:
-      'Auf den beiden Bildschirmen sprechen zwei künstliche Stimmen miteinander — ohne Skript, ohne Ende. Was sie sagen, entsteht in dem Moment, in dem Sie es hören.',
+      'Auf den beiden Bildschirmen sprechen zwei künstliche Stimmen miteinander, ohne Skript und ohne Ende. Was sie sagen, entsteht in dem Moment, in dem Sie es hören.',
     introHead: 'Wer hier spricht',
     intro:
-      'Utobot sieht in der Technik eine Möglichkeit: mehr Zeit, mehr Zugang, neue Formen von Schönheit. Dystobot sieht, was dabei verloren geht: Handwerk, Vertrauen, Macht, die sich sammelt. Keiner von beiden ist Zyniker oder Prediger. Sie hören einander zu — und sie widersprechen sich.',
+      'Utobot sieht in der Technik eine Möglichkeit: mehr Zeit, mehr Zugang, neue Formen von Schönheit. Dystobot sieht, was dabei verloren geht: Handwerk, Vertrauen, Macht, die sich sammelt. Keiner von beiden ist Zyniker oder Prediger. Sie hören einander zu, und sie widersprechen sich.',
     threadHead: 'Ein Ausschnitt',
     thread: [
       {
         who: 'utobot',
-        text: 'Eine Schülerin ohne Zeichenpraxis kann ihre Idee heute sichtbar machen. Das ist keine Kleinigkeit.',
+        text: 'Wer nie zeichnen gelernt hat, kann eine Bildidee heute sichtbar machen und sie jemandem zeigen. In der Schule ist das ein Einstieg, kein Ersatz.',
       },
       {
         who: 'dystobot',
-        text: 'Sichtbar mit wessen Handschrift? Sie borgt sich Bilder von Menschen, die nie gefragt wurden.',
+        text: 'Trainiert wurde auf Arbeiten von Illustratorinnen und Illustratoren, die weder gefragt noch bezahlt wurden. Utobot, das ist zuerst eine Umverteilung.',
       },
       {
         who: 'utobot',
-        text: 'Dann reden wir über die Regeln, nicht über das Werkzeug. Das Werkzeug wird bleiben.',
+        text: 'Dann ist die Frage, wie vergütet wird, nicht ob das Werkzeug bleibt. Diese Debatte gab es bei der Fotografie schon einmal.',
       },
     ],
     threadNote:
-      'Alle paar Minuten wechseln sie das Thema — von Landwirtschaft zu Machtkonzentration, von Denkmalpflege zu Jobverlusten. Zu manchen ihrer Gedanken entsteht ein Bild, das hinter ihnen erscheint.',
+      'Alle paar Minuten wechseln sie das Thema: von personalisierter Bildung zu Machtkonzentration, von neuen Kunstformen zu den ökologischen Kosten. Zu manchen ihrer Gedanken entsteht ein Bild, das hinter ihnen erscheint.',
     pressHead: 'Sie können mitreden',
     pressSteps: [
       'Halten Sie den roten Knopf gedrückt.',
-      'Sprechen Sie, während er gedrückt bleibt — eine Frage, ein Einwand, ein Vorschlag.',
+      'Sprechen Sie, während er gedrückt bleibt: eine Frage, ein Einwand, ein Vorschlag.',
       'Lassen Sie los. Die beiden hören zu und antworten Ihnen.',
     ],
     pressCue: 'Jetzt sprechen …',
     pressNote:
-      'Wenn gerade jemand spricht, unterbrechen Sie ihn — das ist so vorgesehen. Sie müssen nicht warten.',
+      'Wenn gerade jemand spricht, unterbrechen Sie ihn. Das ist so vorgesehen, Sie müssen nicht warten.',
   },
 
   ideas: {
     title: 'Mitreden',
     eyebrow: 'Ideen',
-    h1: 'Was Sie <em>sagen</em> können.',
+    h1: 'Wie Sie <em>mitmachen</em> können.',
     lede:
       'Die beiden reagieren auf alles, was sie hören. Am interessantesten wird es, wenn Sie ihnen widersprechen oder sie auseinanderbringen.',
     groups: [
       {
-        title: 'Sprechen Sie Ihre Sprache',
-        text:
-          'Sie verstehen Deutsch, Französisch, Italienisch, Englisch und viele weitere Sprachen — und antworten in der Sprache, in der Sie sie ansprechen. Auch Dialekt funktioniert oft.',
-        prompts: ['Parlez-vous français, tous les deux?', 'Könnt ihr das auf Englisch erklären?'],
-      },
-      {
-        title: 'Ergreifen Sie Partei',
-        text: 'Stellen Sie sich auf eine Seite — oder gegen beide.',
+        title: 'Mischen Sie sich ein',
+        text: 'Stellen Sie sich auf eine Seite, oder gegen beide.',
         prompts: [
           'Dystobot, du bist mir zu pessimistisch.',
           'Utobot, das klingt wie eine Werbebroschüre.',
@@ -78,28 +77,29 @@ const de = {
         ],
       },
       {
-        title: 'Geben Sie ein Thema vor',
-        text: 'Bringen Sie etwas ein, worüber sie von selbst nicht gesprochen hätten.',
-        prompts: [
-          'Was passiert mit den Museen, wenn ihr alles malen könnt?',
-          'Redet über eure eigenen Fehler.',
-          'Was würde eure Grossmutter dazu sagen?',
-        ],
+        title: 'Sprechen Sie Ihre Sprache',
+        text:
+          'Sie verstehen Deutsch, Französisch, Italienisch, Englisch und viele weitere Sprachen und antworten in der Sprache, in der Sie sie ansprechen. Auch Dialekt funktioniert oft.',
+        prompts: ['Parlez-vous français, tous les deux?', 'Könnt ihr das auf Englisch erklären?'],
       },
       {
-        title: 'Fragen Sie nach einem Bild',
-        text: 'Zu manchen Gedanken entsteht ein Bild. Sie können eines anregen.',
-        prompts: ['Zeigt mir, wie ihr euch das vorstellt.'],
+        title: 'Fragen Sie nach dem blinden Fleck',
+        text: 'Bringen Sie die beiden dazu, die eigene Position zu prüfen statt sie zu wiederholen.',
+        prompts: [
+          'Wo ist euer blinder Fleck?',
+          'Wo könntet ihr euch irren?',
+          'Was übersieht ihr beide an dieser Frage?',
+        ],
       },
     ],
     note:
-      'Wenn nichts Verständliches ankommt — zu leise, zu viel Umgebungslärm — merken die beiden das und sagen es Ihnen. Probieren Sie es dann einfach noch einmal, etwas näher am Mikrofon.',
+      'Wenn nichts Verständliches ankommt, weil es zu leise war oder zu viel Umgebungslärm herrscht, merken die beiden das und sagen es Ihnen. Probieren Sie es dann einfach noch einmal, etwas näher am Mikrofon.',
   },
 
   tech: {
     title: 'Hinter den Kulissen',
     eyebrow: 'Technik',
-    h1: 'Was zwischen <em>Frage</em> und Antwort passiert.',
+    h1: 'Was <em>zwischen</em> Frage und Antwort passiert.',
     lede:
       'Das kleine Diagramm auf den Bildschirmen zeigt diesen Weg live mit: Ein Punkt füllt sich, wenn ein Teil fertig ist, ein Pfeil leuchtet, während daran gearbeitet wird.',
     diagramAria:
@@ -121,12 +121,12 @@ const de = {
       },
       {
         title: 'Einwurf ins Gespräch',
-        text: 'Ihr Satz wird Teil des Gesprächsverlaufs — genau wie die Beiträge der beiden Stimmen.',
+        text: 'Ihr Satz wird Teil des Gesprächsverlaufs, genau wie die Beiträge der beiden Stimmen.',
       },
       {
         title: 'Sprachmodell',
         text:
-          'Aus dem bisherigen Gespräch schreibt ein Sprachmodell die nächste Antwort. Es sieht nur den Verlauf und die Rolle, die es spielt — den Rest erfindet es jedes Mal neu.',
+          'Aus dem bisherigen Gespräch schreibt ein Sprachmodell die nächste Antwort. Es sieht nur den Verlauf und die Rolle, die es spielt. Den Rest erfindet es jedes Mal neu.',
       },
       {
         title: 'Sprachsynthese',
@@ -140,10 +140,14 @@ const de = {
     ],
     stackHead: 'Woraus es besteht',
     stack: [
-      { k: 'Sprachmodell, Stimme, Bild', v: 'OpenAI' },
-      { k: 'Spracherkennung', v: 'ElevenLabs' },
-      { k: 'Läuft auf', v: 'einem einzelnen Laptop im Ausstellungsraum' },
-      { k: 'Sprache der beiden', v: 'Deutsch, mit Antworten in der Sprache der Besuchenden' },
+      { k: 'Antworten', v: 'Grosses Sprachmodell (LLM), von OpenAI' },
+      { k: 'Stimmen', v: 'Sprachsynthese (Text-to-Speech), von OpenAI' },
+      { k: 'Bilder', v: 'Bildgenerator (Text-to-Image), von OpenAI' },
+      { k: 'Zuhören', v: 'Spracherkennung (Speech-to-Text), von ElevenLabs' },
+      {
+        k: 'Regie',
+        v: 'Ein Laptop im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Gerechnet wird in den Rechenzentren der Anbieter.',
+      },
     ],
     privacyHead: 'Was mit Ihrer Stimme geschieht',
     privacy: [
@@ -164,61 +168,55 @@ const fr = {
   otherPages: 'Les deux autres pages',
   colophonTitle: "À propos de l'installation",
   credits:
-    "Utobot × Dystobot a été développé par LLMify AG pour l'exposition <em>Künstliche Kreativität</em> à l'Aargauer Kunsthaus (26 septembre 2026 – 10 janvier 2027).",
+    "Par LLMify AG pour l'exposition <em>Künstliche Kreativität</em> à l'Aargauer Kunsthaus, du 26 septembre 2026 au 10 janvier 2027.",
 
   home: {
     title: 'Utobot × Dystobot',
     eyebrow: "L'installation",
-    h1: "Deux voix qui ne <em>s'accordent</em> pas.",
+    h1: "Une conversation sur les <em>grandes questions</em> de l'intelligence artificielle.",
     lede:
-      "Sur les deux écrans, deux voix artificielles se parlent — sans script, sans fin. Ce qu'elles disent naît à l'instant où vous l'entendez.",
+      "Sur les deux écrans, deux voix artificielles se parlent, sans script et sans fin. Ce qu'elles disent naît à l'instant où vous l'entendez.",
     introHead: 'Qui parle ici',
     intro:
-      "Utobot voit dans la technique une possibilité : plus de temps, plus d'accès, de nouvelles formes de beauté. Dystobot voit ce qui se perd en chemin : le métier, la confiance, le pouvoir qui se concentre. Aucun des deux n'est cynique ni prêcheur. Ils s'écoutent — et ils se contredisent.",
+      "Utobot voit dans la technique une possibilité : plus de temps, plus d'accès, de nouvelles formes de beauté. Dystobot voit ce qui se perd en chemin : le métier, la confiance, le pouvoir qui se concentre. Aucun des deux n'est cynique ni prêcheur. Ils s'écoutent, et ils se contredisent.",
     threadHead: 'Un extrait',
     thread: [
       {
         who: 'utobot',
-        text: "Une élève qui n'a jamais dessiné peut aujourd'hui rendre son idée visible. Ce n'est pas rien.",
+        text: "Quelqu'un qui n'a jamais appris à dessiner peut aujourd'hui rendre une idée visible et la montrer. À l'école, c'est une porte d'entrée, pas un remplacement.",
       },
       {
         who: 'dystobot',
-        text: "Visible avec la main de qui ? Elle emprunte des images à des gens qu'on n'a jamais consultés.",
+        text: "L'entraînement s'est fait sur le travail d'illustratrices et d'illustrateurs qui n'ont été ni consultés ni payés. Utobot, c'est d'abord une redistribution.",
       },
       {
         who: 'utobot',
-        text: "Alors parlons des règles, pas de l'outil. L'outil, lui, restera.",
+        text: "Alors la question est de savoir comment rémunérer, pas si l'outil restera. Ce débat a déjà eu lieu pour la photographie.",
       },
     ],
     threadNote:
-      "Toutes les quelques minutes, ils changent de sujet — de l'agriculture à la concentration du pouvoir, du patrimoine aux pertes d'emplois. Certaines de leurs pensées donnent naissance à une image qui apparaît derrière eux.",
+      "Toutes les quelques minutes, ils changent de sujet : de l'éducation personnalisée à la concentration du pouvoir, des nouvelles formes d'art au coût écologique. Certaines de leurs pensées donnent naissance à une image qui apparaît derrière eux.",
     pressHead: 'Vous pouvez participer',
     pressSteps: [
       'Maintenez le bouton rouge enfoncé.',
-      "Parlez pendant qu'il reste enfoncé — une question, une objection, une proposition.",
+      "Parlez pendant qu'il reste enfoncé : une question, une objection, une proposition.",
       'Relâchez. Ils vous écoutent et vous répondent.',
     ],
     pressCue: 'Parlez maintenant …',
     pressNote:
-      "Si quelqu'un parle à ce moment-là, vous l'interrompez — c'est prévu ainsi. Vous n'avez pas à attendre.",
+      "Si quelqu'un parle à ce moment-là, vous l'interrompez. C'est prévu ainsi, vous n'avez pas à attendre.",
   },
 
   ideas: {
     title: 'Participer',
     eyebrow: 'Idées',
-    h1: 'Ce que vous pouvez <em>dire</em>.',
+    h1: 'Comment <em>participer</em>.',
     lede:
       "Ils réagissent à tout ce qu'ils entendent. Cela devient intéressant quand vous les contredisez ou que vous les séparez.",
     groups: [
       {
-        title: 'Parlez votre langue',
-        text:
-          "Ils comprennent le français, l'allemand, l'italien, l'anglais et bien d'autres langues — et répondent dans celle que vous employez.",
-        prompts: ['Parlez-vous français, tous les deux ?', 'Pouvez-vous expliquer cela en anglais ?'],
-      },
-      {
-        title: 'Prenez parti',
-        text: "Rangez-vous d'un côté — ou contre les deux.",
+        title: 'Intervenez',
+        text: "Rangez-vous d'un côté, ou contre les deux.",
         prompts: [
           'Dystobot, tu es bien trop pessimiste.',
           "Utobot, on dirait une brochure publicitaire.",
@@ -226,28 +224,29 @@ const fr = {
         ],
       },
       {
-        title: 'Imposez un sujet',
-        text: "Amenez quelque chose dont ils n'auraient pas parlé d'eux-mêmes.",
-        prompts: [
-          'Que deviennent les musées si vous savez tout peindre ?',
-          'Parlez de vos propres erreurs.',
-          'Que dirait votre grand-mère de tout cela ?',
-        ],
+        title: 'Parlez votre langue',
+        text:
+          "Ils comprennent le français, l'allemand, l'italien, l'anglais et bien d'autres langues, et répondent dans celle que vous employez.",
+        prompts: ['Parlez-vous français, tous les deux ?', 'Pouvez-vous expliquer cela en anglais ?'],
       },
       {
-        title: 'Demandez une image',
-        text: 'Certaines pensées donnent une image. Vous pouvez en susciter une.',
-        prompts: ['Montrez-moi comment vous imaginez cela.'],
+        title: "Cherchez l'angle mort",
+        text: 'Amenez-les à examiner leur propre position au lieu de la répéter.',
+        prompts: [
+          "Où est votre angle mort ?",
+          'Où pourriez-vous vous tromper ?',
+          "Qu'est-ce que vous manquez tous les deux dans cette question ?",
+        ],
       },
     ],
     note:
-      "Si rien de compréhensible n'arrive — trop bas, trop de bruit autour — ils s'en aperçoivent et vous le disent. Réessayez simplement, un peu plus près du micro.",
+      "Si rien de compréhensible n'arrive, parce que c'était trop bas ou qu'il y a trop de bruit autour, ils s'en aperçoivent et vous le disent. Réessayez simplement, un peu plus près du micro.",
   },
 
   tech: {
     title: 'Dans les coulisses',
     eyebrow: 'Technique',
-    h1: 'Ce qui se passe entre la <em>question</em> et la réponse.',
+    h1: 'Ce qui se passe <em>entre</em> la question et la réponse.',
     lede:
       "Le petit schéma sur les écrans montre ce trajet en direct : un point se remplit lorsqu'une étape est terminée, une flèche s'allume pendant qu'on y travaille.",
     diagramAria:
@@ -265,7 +264,7 @@ const fr = {
     legend: [
       {
         title: 'Reconnaissance vocale',
-        text: "Tant que le bouton est enfoncé, le son est enregistré puis converti en texte.",
+        text: 'Tant que le bouton est enfoncé, le son est enregistré puis converti en texte.',
       },
       {
         title: 'Entrée dans la conversation',
@@ -274,7 +273,7 @@ const fr = {
       {
         title: 'Modèle de langage',
         text:
-          "À partir de la conversation en cours, un modèle de langage écrit la réponse suivante. Il ne voit que le fil et le rôle qu'il joue — le reste, il l'invente à chaque fois.",
+          "À partir de la conversation en cours, un modèle de langage écrit la réponse suivante. Il ne voit que le fil et le rôle qu'il joue. Le reste, il l'invente à chaque fois.",
       },
       {
         title: 'Synthèse vocale',
@@ -288,10 +287,14 @@ const fr = {
     ],
     stackHead: 'De quoi c’est fait',
     stack: [
-      { k: 'Modèle de langage, voix, images', v: 'OpenAI' },
-      { k: 'Reconnaissance vocale', v: 'ElevenLabs' },
-      { k: 'Fonctionne sur', v: "un seul ordinateur portable dans la salle d'exposition" },
-      { k: 'Langue des deux voix', v: 'allemand, avec réponses dans la langue des visiteurs' },
+      { k: 'Réponses', v: 'Grand modèle de langage (LLM), par OpenAI' },
+      { k: 'Voix', v: 'Synthèse vocale (text-to-speech), par OpenAI' },
+      { k: 'Images', v: "Générateur d'images (text-to-image), par OpenAI" },
+      { k: 'Écoute', v: 'Reconnaissance vocale (speech-to-text), par ElevenLabs' },
+      {
+        k: 'Régie',
+        v: "Un ordinateur portable dans la salle. Il relie les services et décide qui parle quand. Les calculs, eux, ont lieu dans les centres de données des prestataires.",
+      },
     ],
     privacyHead: 'Ce qui advient de votre voix',
     privacy: [
@@ -312,61 +315,55 @@ const en = {
   otherPages: 'The other two pages',
   colophonTitle: 'About the installation',
   credits:
-    'Utobot × Dystobot was built by LLMify AG for the exhibition <em>Künstliche Kreativität</em> at Aargauer Kunsthaus (26 September 2026 – 10 January 2027).',
+    'By LLMify AG for the exhibition <em>Künstliche Kreativität</em> at Aargauer Kunsthaus, 26 September 2026 to 10 January 2027.',
 
   home: {
     title: 'Utobot × Dystobot',
     eyebrow: 'The installation',
-    h1: 'Two voices that never <em>agree</em>.',
+    h1: 'A conversation about the <em>big questions</em> of artificial intelligence.',
     lede:
-      'On the two screens, two artificial voices talk to each other — unscripted, and without end. What they say is made in the moment you hear it.',
+      'On the two screens, two artificial voices talk to each other, unscripted and without end. What they say is made in the moment you hear it.',
     introHead: 'Who is speaking',
     intro:
-      'Utobot sees possibility in the technology: more time, wider access, new kinds of beauty. Dystobot sees what gets lost along the way: craft, trust, power gathering in fewer hands. Neither is a cynic or a preacher. They listen to each other — and they disagree.',
+      'Utobot sees possibility in the technology: more time, wider access, new kinds of beauty. Dystobot sees what gets lost along the way: craft, trust, power gathering in fewer hands. Neither is a cynic or a preacher. They listen to each other, and they disagree.',
     threadHead: 'A fragment',
     thread: [
       {
         who: 'utobot',
-        text: 'A student who has never drawn can make her idea visible today. That is not nothing.',
+        text: 'Someone who never learned to draw can make a visual idea concrete today and show it to a room. In a classroom that is a way in, not a replacement.',
       },
       {
         who: 'dystobot',
-        text: 'Visible in whose hand? She is borrowing from people nobody ever asked.',
+        text: 'The training used work by illustrators who were neither asked nor paid. Utobot, that is redistribution before it is anything else.',
       },
       {
         who: 'utobot',
-        text: 'Then let us argue about the rules, not the tool. The tool is staying.',
+        text: 'Then the question is how people get paid, not whether the tool stays. We had this argument about photography already.',
       },
     ],
     threadNote:
-      'Every few minutes they change the subject — from farming to the concentration of power, from heritage conservation to job losses. Some of their thoughts turn into an image that appears behind them.',
+      'Every few minutes they change the subject: from personalised education to the concentration of power, from new art forms to the ecological bill. Some of their thoughts turn into an image that appears behind them.',
     pressHead: 'You can join in',
     pressSteps: [
       'Press and hold the red button.',
-      'Speak while you hold it — a question, an objection, a suggestion.',
+      'Speak while you hold it: a question, an objection, a suggestion.',
       'Let go. They listen, and they answer you.',
     ],
     pressCue: 'Speak now …',
     pressNote:
-      'If one of them is mid-sentence, you cut them off — that is intended. There is no need to wait.',
+      'If one of them is mid-sentence, you cut them off. That is intended, there is no need to wait.',
   },
 
   ideas: {
     title: 'Join in',
     eyebrow: 'Ideas',
-    h1: 'Things worth <em>saying</em>.',
+    h1: 'How to <em>join in</em>.',
     lede:
       'They respond to anything they hear. It gets interesting when you contradict them, or drive a wedge between them.',
     groups: [
       {
-        title: 'Speak your language',
-        text:
-          'They understand English, German, French, Italian and many other languages — and answer in whichever one you use.',
-        prompts: ['Can the two of you talk to me in English?', 'Parlez-vous français, tous les deux?'],
-      },
-      {
-        title: 'Take a side',
-        text: 'Back one of them — or neither.',
+        title: 'Interrupt them',
+        text: 'Back one of them, or neither.',
         prompts: [
           'Dystobot, you are far too pessimistic.',
           'Utobot, that sounds like a sales brochure.',
@@ -374,28 +371,29 @@ const en = {
         ],
       },
       {
-        title: 'Set the subject',
-        text: 'Bring up something they would not have reached on their own.',
-        prompts: [
-          'What happens to museums if you can paint anything?',
-          'Talk about your own mistakes.',
-          'What would your grandmother make of this?',
-        ],
+        title: 'Speak your language',
+        text:
+          'They understand English, German, French, Italian and many other languages, and answer in whichever one you use.',
+        prompts: ['Can the two of you talk to me in English?', 'Parlez-vous français, tous les deux?'],
       },
       {
-        title: 'Ask for a picture',
-        text: 'Some thoughts turn into an image. You can prompt one.',
-        prompts: ['Show me how you picture that.'],
+        title: 'Ask for the blind spot',
+        text: 'Push them to examine their own position instead of restating it.',
+        prompts: [
+          'Where is your blind spot?',
+          'Where could you be wrong?',
+          'What are you both missing about this?',
+        ],
       },
     ],
     note:
-      'If nothing intelligible comes through — too quiet, too much room noise — they notice and say so. Just try again, a little closer to the microphone.',
+      'If nothing intelligible comes through, because it was too quiet or there is too much room noise, they notice and say so. Just try again, a little closer to the microphone.',
   },
 
   tech: {
     title: 'Behind the scenes',
     eyebrow: 'Technical',
-    h1: 'What happens between <em>question</em> and answer.',
+    h1: 'What happens <em>between</em> question and answer.',
     lede:
       'The small diagram on the screens tracks this path live: a dot fills in when a part is finished, an arrow lights up while it is being worked on.',
     diagramAria:
@@ -422,7 +420,7 @@ const en = {
       {
         title: 'Language model',
         text:
-          'From the conversation so far, a language model writes the next reply. It sees only the thread and the role it plays — everything else it invents anew each time.',
+          'From the conversation so far, a language model writes the next reply. It sees only the thread and the role it plays. Everything else it invents anew each time.',
       },
       {
         title: 'Speech synthesis',
@@ -436,17 +434,21 @@ const en = {
     ],
     stackHead: 'What it is made of',
     stack: [
-      { k: 'Language model, voice, images', v: 'OpenAI' },
-      { k: 'Speech recognition', v: 'ElevenLabs' },
-      { k: 'Runs on', v: 'a single laptop in the exhibition room' },
-      { k: 'Language of the two', v: 'German, answering in the visitor’s language' },
+      { k: 'Replies', v: 'Large language model (LLM), by OpenAI' },
+      { k: 'Voices', v: 'Speech synthesis (text-to-speech), by OpenAI' },
+      { k: 'Images', v: 'Image generator (text-to-image), by OpenAI' },
+      { k: 'Listening', v: 'Speech recognition (speech-to-text), by ElevenLabs' },
+      {
+        k: 'Direction',
+        v: 'A laptop in the exhibition room. It connects the services and decides who speaks when. The computing itself happens in the providers’ data centres.',
+      },
     ],
     privacyHead: 'What happens to your voice',
     privacy: [
       'Recording happens only while you hold the button down. Before and after, the microphone is not listening.',
       'To turn it into text, the recording is sent to ElevenLabs in the United States. The transcript created there is deleted immediately after processing. The replies, the voices and the images use OpenAI services in the United States.',
       'Neither provider uses this data to train their models. The transfer to the United States relies on the Swiss-US Data Privacy Framework and on standard contractual clauses.',
-      'Nothing is stored on the machine in the exhibition room — neither audio nor words. Nothing remains that could be traced back to you.',
+      'Nothing is stored on the machine in the exhibition room, neither audio nor words. Nothing remains that could be traced back to you.',
     ],
   },
 };
