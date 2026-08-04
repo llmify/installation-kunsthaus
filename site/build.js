@@ -13,9 +13,12 @@ const { dirname, join, resolve } = require('node:path');
 const { PAGES, locales } = require('./content');
 
 const OUT = resolve(__dirname, 'dist');
-// Printed on the paper version, where a link cannot be tapped. Update together
-// with the Pages settings if the site ever moves to its own domain.
-const SITE_BASE = 'https://llmify.github.io/installation-kunsthaus/';
+// Printed on the paper version, where a link cannot be tapped, and encoded into
+// the QR codes. This is the canonical address: the llmify.github.io project URL
+// redirects here, because the organisation has llmify.ch verified for Pages.
+// Pointing the codes at the redirect would cost a round trip on the kind of
+// mobile signal a gallery has.
+const SITE_BASE = 'https://llmify.ch/installation-kunsthaus/';
 
 const esc = (s) => String(s).replace(/&(?![a-z#0-9]+;)/gi, '&amp;').replace(/</g, '&lt;');
 

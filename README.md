@@ -11,7 +11,7 @@ exhibition **Künstliche Kreativität** at the Aargauer Kunsthaus
 Each page links to the other two, so a visitor never has to scan more than one
 code. German, French and English.
 
-Live at <https://llmify.github.io/installation-kunsthaus/>.
+Live at <https://llmify.ch/installation-kunsthaus/>.
 
 The installation itself lives in a separate, private repository; this one holds
 only what is meant to be public.
