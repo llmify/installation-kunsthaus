@@ -50,6 +50,7 @@ const de = {
       'Sprechen Sie, während er gedrückt bleibt — eine Frage, ein Einwand, ein Vorschlag.',
       'Lassen Sie los. Die beiden hören zu und antworten Ihnen.',
     ],
+    pressCue: 'Jetzt sprechen …',
     pressNote:
       'Wenn gerade jemand spricht, unterbrechen Sie ihn — das ist so vorgesehen. Sie müssen nicht warten.',
   },
@@ -197,6 +198,7 @@ const fr = {
       "Parlez pendant qu'il reste enfoncé — une question, une objection, une proposition.",
       'Relâchez. Ils vous écoutent et vous répondent.',
     ],
+    pressCue: 'Parlez maintenant …',
     pressNote:
       "Si quelqu'un parle à ce moment-là, vous l'interrompez — c'est prévu ainsi. Vous n'avez pas à attendre.",
   },
@@ -344,6 +346,7 @@ const en = {
       'Speak while you hold it — a question, an objection, a suggestion.',
       'Let go. They listen, and they answer you.',
     ],
+    pressCue: 'Speak now …',
     pressNote:
       'If one of them is mid-sentence, you cut them off — that is intended. There is no need to wait.',
   },

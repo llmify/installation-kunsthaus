@@ -241,24 +241,43 @@ h2 {
   border: 1.5px solid currentColor;
 }
 
+/* --voice carries the speaker's colour separately from `color`, because the
+ * pill sets `color: var(--ink)` for its own text — `currentColor` in the same
+ * rule would resolve to that, painting the pill background page-black. */
 .turn.utobot {
+  --voice: var(--tan);
   color: var(--tan);
 }
 
 .turn.dystobot {
+  --voice: var(--slate);
   color: var(--slate);
 }
 
 .turn.visitor {
+  --voice: var(--red);
   color: var(--red);
 }
 
+/* The screens dock a cream pill with the bot's name in the corner. Reusing that
+ * shape here — tinted per voice, and set a degree off true so it reads as
+ * applied rather than typeset — carries the installation's character onto the
+ * page without adding any new vocabulary. */
 .turn .who {
-  display: block;
-  font: 700 11.5px var(--mono);
-  letter-spacing: 0.16em;
+  display: inline-block;
+  background: var(--voice);
+  color: var(--ink);
+  padding: 0.24em 0.72em 0.28em;
+  border-radius: 999px;
+  font: 700 11px var(--mono);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 0.42rem;
+  margin-bottom: 0.55rem;
+  transform: rotate(-1.4deg);
+}
+
+.turn.dystobot .who {
+  transform: rotate(1.1deg);
 }
 
 .turn .said {
@@ -316,6 +335,38 @@ h2 {
   background: rgba(245, 239, 230, 0.025);
 }
 
+.press {
+  position: relative;
+}
+
+.cue {
+  position: absolute;
+  left: 1.8rem;
+  bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  font: 600 10.5px var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--tan);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+}
+
+.cue i {
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 50%;
+  background: var(--tan);
+}
+
+.press:hover .cue {
+  opacity: 1;
+  transform: none;
+}
+
 .plinth {
   flex: none;
   width: 74px;
@@ -334,6 +385,19 @@ h2 {
   background: radial-gradient(circle at 38% 32%, #ff6b6f, var(--red) 62%, #a8262a);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   animation: sonar 2.4s ease-out infinite;
+  transition: scale 120ms ease;
+}
+
+/* Pressing it does what pressing it does in the room. Decorative rather than
+ * functional — the plinth is aria-hidden — so this is a reward for poking at
+ * it, never the only way to learn the interaction. */
+.press:hover .knob {
+  scale: 1.08;
+}
+
+.press:active .knob {
+  scale: 0.9;
+  animation: none;
 }
 
 /* Same ping as the installation's push-to-talk cue. */
@@ -484,6 +548,49 @@ h2 {
  * paper. */
 .legend-head {
   margin-top: 1.8rem;
+}
+
+/* The signal travels the schematic on a loop: each element brightens as its
+ * turn comes, the way a dot fills and an arrow lights on the screens. Nothing
+ * is hidden between passes — the highlight only adds — so print and
+ * reduced-motion lose the motion and keep the whole diagram. */
+.diagram [class*='st'] {
+  animation: signal 7s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.st1 { animation-delay: 0s; }
+.st2 { animation-delay: 0.35s; }
+.st3 { animation-delay: 0.7s; }
+.st4 { animation-delay: 1.05s; }
+.st5 { animation-delay: 1.4s; }
+.st6 { animation-delay: 1.75s; }
+.st7 { animation-delay: 2.1s; }
+.st8 { animation-delay: 2.45s; }
+.st9 { animation-delay: 2.8s; }
+
+/* The lit window is deliberately short. At 0.35s between steps, a highlight
+ * lasting much past 0.6s has four or five elements glowing at once, which reads
+ * as the whole diagram lighting up rather than something travelling through
+ * it. */
+@keyframes signal {
+  0%,
+  9%,
+  100% {
+    filter: none;
+    scale: 1;
+  }
+  3% {
+    filter: brightness(1.28) drop-shadow(0 0 3px rgba(215, 168, 110, 0.6));
+    scale: 1.09;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram [class*='st'] {
+    animation: none;
+  }
 }
 
 .legend {
@@ -804,6 +911,26 @@ a:focus-visible,
     background: none;
     padding: 0.8rem;
     margin-top: 0.8rem;
+  }
+
+  /* A solid pill per speaker would lay down a lot of ink; outlined reads the
+   * same on paper. The hover cue and the travelling highlight have no meaning
+   * on a sheet. */
+  .turn .who {
+    background: none;
+    color: inherit;
+    border: 1px solid currentColor;
+    padding: 0.1em 0.5em 0.14em;
+    margin-bottom: 0.28rem;
+    transform: none;
+  }
+
+  .cue {
+    display: none;
+  }
+
+  .diagram [class*='st'] {
+    animation: none;
   }
 
   .plinth {

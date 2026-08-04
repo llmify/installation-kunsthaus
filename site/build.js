@@ -50,36 +50,42 @@ function assetHref(locale, page) {
 // legend below it — the numbering is real here, it is the order things happen.
 
 function diagram(d) {
-  // Every dot is drawn filled. On the screens a dot fills only once its part is
-  // finished, but this schematic shows the whole path at once — leaving some
-  // hollow would depict one particular instant and invite the reader to work out
-  // which, for no gain.
-  const dot = (x, y) => `<circle class="d-dot-full" cx="${x}" cy="${y}" r="8"/>`;
+  // Every dot is drawn filled and every arrow is drawn solid: this schematic
+  // shows the whole path at once, and leaving parts faint would depict one
+  // particular instant and invite the reader to work out which.
+  //
+  // The `st<n>` class on each element is its position in the sequence the
+  // signal actually travels. The stylesheet uses it to run a highlight along
+  // the path on a loop — the same liveness the screens have, where a dot fills
+  // as its part lands and an arrow lights while its step runs. It only ever
+  // brightens what is already drawn, so with animation off (print, or reduced
+  // motion) nothing is missing.
+  const dot = (x, y, st) => `<circle class="d-dot-full st${st}" cx="${x}" cy="${y}" r="8"/>`;
   const label = (x, y, t, anchor = 'middle') =>
     `<text class="d-label" x="${x}" y="${y}" text-anchor="${anchor}">${esc(t)}</text>`;
-  const down = (x, y1, y2) =>
-    `<line class="d-line" x1="${x}" y1="${y1}" x2="${x}" y2="${y2 - 9}"/>` +
-    `<polygon class="d-head" points="${x - 5},${y2 - 9} ${x + 5},${y2 - 9} ${x},${y2}"/>`;
-  const right = (y, x1, x2) =>
-    `<line class="d-line" x1="${x1}" y1="${y}" x2="${x2 - 9}" y2="${y}"/>` +
-    `<polygon class="d-head" points="${x2 - 9},${y - 5} ${x2 - 9},${y + 5} ${x2},${y}"/>`;
+  const down = (x, y1, y2, st) =>
+    `<g class="st${st}"><line class="d-line" x1="${x}" y1="${y1}" x2="${x}" y2="${y2 - 9}"/>` +
+    `<polygon class="d-head" points="${x - 5},${y2 - 9} ${x + 5},${y2 - 9} ${x},${y2}"/></g>`;
+  const right = (y, x1, x2, st) =>
+    `<g class="st${st}"><line class="d-line" x1="${x1}" y1="${y}" x2="${x2 - 9}" y2="${y}"/>` +
+    `<polygon class="d-head" points="${x2 - 9},${y - 5} ${x2 - 9},${y + 5} ${x2},${y}"/></g>`;
   const badge = (x, y, n) =>
     `<circle class="d-badge" cx="${x}" cy="${y}" r="9.5"/>` +
     `<text class="d-badge-text" x="${x}" y="${y + 4}" text-anchor="middle">${n}</text>`;
 
   return `<svg viewBox="0 0 500 312" role="img" aria-label="${esc(d.aria)}">
   <text class="d-caption" x="80" y="12" text-anchor="middle">${esc(d.caption).toUpperCase()}</text>
-  ${dot(80, 30)}${label(80, 55, d.audio)}
-  ${down(80, 66, 100)}${badge(105, 84, 1)}
-  ${dot(80, 116)}${label(80, 141, d.vtext)}
-  ${down(80, 152, 186)}${badge(105, 170, 2)}
-  ${dot(80, 202)}${label(80, 227, d.konv)}
-  ${right(202, 100, 230)}${badge(165, 184, 3)}
-  ${dot(250, 202)}${label(250, 227, d.text)}
-  ${right(202, 270, 400)}${badge(335, 184, 4)}
-  ${dot(420, 202)}${label(420, 227, d.stimme)}
-  ${down(250, 238, 270)}${badge(275, 254, 5)}
-  ${dot(250, 278)}${label(250, 303, d.bild)}
+  ${dot(80, 30, 1)}${label(80, 55, d.audio)}
+  ${down(80, 66, 100, 2)}${badge(105, 84, 1)}
+  ${dot(80, 116, 3)}${label(80, 141, d.vtext)}
+  ${down(80, 152, 186, 4)}${badge(105, 170, 2)}
+  ${dot(80, 202, 5)}${label(80, 227, d.konv)}
+  ${right(202, 100, 230, 6)}${badge(165, 184, 3)}
+  ${dot(250, 202, 7)}${label(250, 227, d.text)}
+  ${right(202, 270, 400, 8)}${badge(335, 184, 4)}
+  ${dot(420, 202, 9)}${label(420, 227, d.stimme)}
+  ${down(250, 238, 270, 8)}${badge(275, 254, 5)}
+  ${dot(250, 278, 9)}${label(250, 303, d.bild)}
 </svg>`;
 }
 
@@ -123,6 +129,7 @@ ${c.pressSteps.map((s) => `              <li>${esc(s)}</li>`).join('\n')}
             </ol>
             <p class="aside">${esc(c.pressNote)}</p>
           </div>
+          <span class="cue" aria-hidden="true"><i></i>${esc(c.pressCue)}</span>
         </div>
       </section>`;
 }
