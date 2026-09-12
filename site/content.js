@@ -156,7 +156,7 @@ const de = {
     privacy: [
       'Aufgenommen wird nur, solange Sie den Knopf gedrückt halten, sonst hört das Mikrofon nicht mit.',
       'Die Umwandlung in Text übernimmt Microsoft, in einem Rechenzentrum in der EU. Dort entstehen auch die Antworten der beiden und die Bilder. Ihre Stimme verlässt die EU also nicht.',
-      'In die USA geht nur ein Schritt: die Stimmen der beiden stammen von ElevenLabs. Übermittelt wird dorthin ausschliesslich ihr Text, nie eine Aufnahme von Ihnen. Grundlage dafür sind das Swiss-US Data Privacy Framework und Standardvertragsklauseln.',
+      'In die USA geht nur ein Schritt: die Stimmen der beiden stammen von ElevenLabs. Übermittelt wird dorthin ausschliesslich ihr Text, nie eine Aufnahme von Ihnen. Für diese Übermittlung gelten die vertraglichen Garantien, die das Datenschutzrecht dafür verlangt.',
       'Kein Anbieter verwendet die Daten, um seine Modelle zu trainieren.',
       'Ihre Aufnahme wird nirgends abgelegt: weder auf dem Rechner im Ausstellungsraum noch beim Anbieter. Microsoft hält für diesen Dienst ausdrücklich fest, dass weder der Ton noch die daraus gewonnene Abschrift aufbewahrt werden. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
     ],
@@ -307,7 +307,7 @@ const fr = {
     privacy: [
       "L'enregistrement n'a lieu que tant que vous maintenez le bouton, sinon le micro n'écoute pas.",
       "La conversion en texte est assurée par Microsoft, dans un centre de données situé dans l'UE. C'est là que naissent aussi les réponses des deux et les images. Votre voix ne quitte donc pas l'UE.",
-      "Une seule étape passe par les États-Unis : les voix des deux viennent d'ElevenLabs. Seul leur texte y est transmis, jamais un enregistrement de votre voix. Cela repose sur le Swiss-US Data Privacy Framework et sur des clauses contractuelles types.",
+      "Une seule étape passe par les États-Unis : les voix des deux viennent d'ElevenLabs. Seul leur texte y est transmis, jamais un enregistrement de votre voix. Ce transfert est couvert par les garanties contractuelles exigées par le droit de la protection des données.",
       "Aucun prestataire n'utilise ces données pour entraîner ses modèles.",
       "Votre enregistrement n'est conservé nulle part : ni sur l'ordinateur de la salle, ni chez le prestataire. Microsoft indique expressément que, pour ce service, ni le son ni la transcription qui en est tirée ne sont conservés. Il ne reste rien qui puisse vous être attribué.",
     ],
@@ -458,7 +458,7 @@ const en = {
     privacy: [
       'Recording happens only while you hold the button down, otherwise the microphone is not listening.',
       'Turning it into text is done by Microsoft, in a data centre inside the EU. The replies and the images are made there too, so your voice does not leave the EU.',
-      'Exactly one step goes to the United States: the voices of the two come from ElevenLabs. Only their text is sent there, never a recording of you. This rests on the Swiss-US Data Privacy Framework and on standard contractual clauses.',
+      'Exactly one step goes to the United States: the voices of the two come from ElevenLabs. Only their text is sent there, never a recording of you. That transfer is covered by the contractual safeguards data protection law requires for it.',
       'No provider uses this data to train their models.',
       'Your recording is not kept anywhere: not on the machine in the exhibition room, and not at the provider either. Microsoft states explicitly that for this service neither the audio nor the transcript derived from it is retained. Nothing remains that could be traced back to you.',
     ],
