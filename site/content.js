@@ -51,13 +51,16 @@ const de = {
       'Alle paar Minuten wechseln sie das Thema: von personalisierter Bildung zu Machtkonzentration, von neuen Kunstformen zu den ökologischen Kosten. Zu manchen ihrer Gedanken entsteht ein Bild, das hinter ihnen erscheint.',
     pressHead: 'Sie können mitreden',
     pressSteps: [
-      'Halten Sie den roten Knopf gedrückt.',
+      'Halten Sie den linken roten Knopf gedrückt.',
       'Sprechen Sie, während er gedrückt bleibt: eine Frage, ein Einwand, ein Vorschlag.',
       'Lassen Sie los. Die beiden hören zu und antworten Ihnen.',
     ],
     pressCue: 'Jetzt sprechen …',
     pressNote:
       'Wenn gerade jemand spricht, unterbrechen Sie ihn. Das ist so vorgesehen, Sie müssen nicht warten.',
+    readHead: 'Gesprochenes mitlesen',
+    readText:
+      'Fällt es schwer, den beiden zu folgen, drücken Sie den rechten roten Knopf: Was gesagt wird, erscheint dann auf den Bildschirmen. Nach einer Weile blendet es sich von selbst wieder aus. Drücken Sie erneut, wenn Sie weiterlesen möchten.',
   },
 
   ideas: {
@@ -140,20 +143,21 @@ const de = {
     ],
     stackHead: 'Woraus es besteht',
     stack: [
-      { k: 'Antworten', v: 'Grosses Sprachmodell (LLM), von OpenAI' },
-      { k: 'Stimmen', v: 'Sprachsynthese (Text-to-Speech), von OpenAI' },
-      { k: 'Bilder', v: 'Bildgenerator (Text-to-Image), von OpenAI' },
-      { k: 'Zuhören', v: 'Spracherkennung (Speech-to-Text), von ElevenLabs' },
+      { k: 'Zuhören', v: 'Spracherkennung (Speech-to-Text), von Microsoft, in der EU' },
+      { k: 'Antworten', v: 'Grosses Sprachmodell (LLM), von Microsoft, in der EU' },
+      { k: 'Bilder', v: 'Bildgenerator (Text-to-Image), von Microsoft, in der EU' },
+      { k: 'Stimmen', v: 'Sprachsynthese (Text-to-Speech), von ElevenLabs' },
       {
         k: 'Regie',
-        v: 'Ein Laptop im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Gerechnet wird in den Rechenzentren der Anbieter.',
+        v: 'Ein kleiner Rechner im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Gerechnet wird in den Rechenzentren der Anbieter.',
       },
     ],
     privacyHead: 'Was mit Ihrer Stimme geschieht',
     privacy: [
       'Aufgenommen wird nur, solange Sie den Knopf gedrückt halten. Vorher und nachher hört das Mikrofon nicht mit.',
-      'Zur Umwandlung in Text wird die Aufnahme an ElevenLabs in die USA übermittelt. Das dort entstehende Transkript wird unmittelbar nach der Verarbeitung wieder gelöscht. Für die Antworten, die Stimmen und die Bilder werden Dienste von OpenAI in den USA genutzt.',
-      'Beide Anbieter verwenden die Daten nicht zum Training ihrer Modelle. Die Übermittlung in die USA stützt sich auf das Swiss-US Data Privacy Framework beziehungsweise auf Standardvertragsklauseln.',
+      'Die Umwandlung in Text geschieht bei Microsoft in einem Rechenzentrum in der EU, ebenso die Antworten und die Bilder. Ihre Aufnahme verlässt die EU nicht.',
+      'Nur für die Stimmen der beiden wird ein Dienst von ElevenLabs in den USA genutzt. Dorthin geht ausschliesslich der fertige Antworttext, nie eine Aufnahme von Ihnen.',
+      'Kein Anbieter verwendet die Daten zum Training seiner Modelle. Die Übermittlung in die USA stützt sich auf das Swiss-US Data Privacy Framework beziehungsweise auf Standardvertragsklauseln.',
       'Auf dem Rechner im Ausstellungsraum wird weder Ton noch Wortlaut gespeichert. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
     ],
   },
@@ -198,13 +202,16 @@ const fr = {
       "Toutes les quelques minutes, ils changent de sujet : de l'éducation personnalisée à la concentration du pouvoir, des nouvelles formes d'art au coût écologique. Certaines de leurs pensées donnent naissance à une image qui apparaît derrière eux.",
     pressHead: 'Vous pouvez participer',
     pressSteps: [
-      'Maintenez le bouton rouge enfoncé.',
+      'Maintenez le bouton rouge de gauche enfoncé.',
       "Parlez pendant qu'il reste enfoncé : une question, une objection, une proposition.",
       'Relâchez. Ils vous écoutent et vous répondent.',
     ],
     pressCue: 'Parlez maintenant …',
     pressNote:
       "Si quelqu'un parle à ce moment-là, vous l'interrompez. C'est prévu ainsi, vous n'avez pas à attendre.",
+    readHead: 'Lire ce qui se dit',
+    readText:
+      "Si vous avez du mal à les suivre, appuyez sur le bouton rouge de droite : ce qui se dit apparaît alors sur les écrans. L'affichage s'arrête de lui-même au bout d'un moment. Appuyez à nouveau pour continuer à lire.",
   },
 
   ideas: {
@@ -287,20 +294,21 @@ const fr = {
     ],
     stackHead: 'De quoi c’est fait',
     stack: [
-      { k: 'Réponses', v: 'Grand modèle de langage (LLM), par OpenAI' },
-      { k: 'Voix', v: 'Synthèse vocale (text-to-speech), par OpenAI' },
-      { k: 'Images', v: "Générateur d'images (text-to-image), par OpenAI" },
-      { k: 'Écoute', v: 'Reconnaissance vocale (speech-to-text), par ElevenLabs' },
+      { k: 'Écoute', v: 'Reconnaissance vocale (speech-to-text), par Microsoft, dans l’UE' },
+      { k: 'Réponses', v: 'Grand modèle de langage (LLM), par Microsoft, dans l’UE' },
+      { k: 'Images', v: "Générateur d'images (text-to-image), par Microsoft, dans l’UE" },
+      { k: 'Voix', v: 'Synthèse vocale (text-to-speech), par ElevenLabs' },
       {
         k: 'Régie',
-        v: "Un ordinateur portable dans la salle. Il relie les services et décide qui parle quand. Les calculs, eux, ont lieu dans les centres de données des prestataires.",
+        v: "Un petit ordinateur dans la salle. Il relie les services et décide qui parle quand. Les calculs, eux, ont lieu dans les centres de données des prestataires.",
       },
     ],
     privacyHead: 'Ce qui advient de votre voix',
     privacy: [
       "L'enregistrement n'a lieu que tant que vous maintenez le bouton. Avant et après, le micro n'écoute pas.",
-      "Pour la conversion en texte, l'enregistrement est transmis à ElevenLabs aux États-Unis. La transcription qui en résulte y est supprimée immédiatement après le traitement. Les réponses, les voix et les images passent par des services d'OpenAI aux États-Unis.",
-      "Aucun des deux prestataires n'utilise ces données pour entraîner ses modèles. Le transfert vers les États-Unis s'appuie sur le Swiss-US Data Privacy Framework ou sur des clauses contractuelles types.",
+      "La conversion en texte a lieu chez Microsoft, dans un centre de données situé dans l'UE, tout comme les réponses et les images. Votre enregistrement ne quitte pas l'UE.",
+      "Seules les voix des deux passent par un service d'ElevenLabs aux États-Unis. Seul le texte de réponse y est transmis, jamais un enregistrement de votre voix.",
+      "Aucun prestataire n'utilise ces données pour entraîner ses modèles. Le transfert vers les États-Unis s'appuie sur le Swiss-US Data Privacy Framework ou sur des clauses contractuelles types.",
       "Sur l'ordinateur de la salle, ni le son ni les mots ne sont conservés. Il ne reste rien qui puisse vous être attribué.",
     ],
   },
@@ -345,13 +353,16 @@ const en = {
       'Every few minutes they change the subject: from personalised education to the concentration of power, from new art forms to the ecological bill. Some of their thoughts turn into an image that appears behind them.',
     pressHead: 'You can join in',
     pressSteps: [
-      'Press and hold the red button.',
+      'Press and hold the left red button.',
       'Speak while you hold it: a question, an objection, a suggestion.',
       'Let go. They listen, and they answer you.',
     ],
     pressCue: 'Speak now …',
     pressNote:
       'If one of them is mid-sentence, you cut them off. That is intended, there is no need to wait.',
+    readHead: 'Read along',
+    readText:
+      'If they are hard to follow, press the right red button: what is being said then appears on the screens. It fades out again after a while. Press again if you want to keep reading.',
   },
 
   ideas: {
@@ -434,20 +445,21 @@ const en = {
     ],
     stackHead: 'What it is made of',
     stack: [
-      { k: 'Replies', v: 'Large language model (LLM), by OpenAI' },
-      { k: 'Voices', v: 'Speech synthesis (text-to-speech), by OpenAI' },
-      { k: 'Images', v: 'Image generator (text-to-image), by OpenAI' },
-      { k: 'Listening', v: 'Speech recognition (speech-to-text), by ElevenLabs' },
+      { k: 'Listening', v: 'Speech recognition (speech-to-text), by Microsoft, in the EU' },
+      { k: 'Replies', v: 'Large language model (LLM), by Microsoft, in the EU' },
+      { k: 'Images', v: 'Image generator (text-to-image), by Microsoft, in the EU' },
+      { k: 'Voices', v: 'Speech synthesis (text-to-speech), by ElevenLabs' },
       {
         k: 'Direction',
-        v: 'A laptop in the exhibition room. It connects the services and decides who speaks when. The computing itself happens in the providers’ data centres.',
+        v: 'A small computer in the exhibition room. It connects the services and decides who speaks when. The computing itself happens in the providers’ data centres.',
       },
     ],
     privacyHead: 'What happens to your voice',
     privacy: [
       'Recording happens only while you hold the button down. Before and after, the microphone is not listening.',
-      'To turn it into text, the recording is sent to ElevenLabs in the United States. The transcript created there is deleted immediately after processing. The replies, the voices and the images use OpenAI services in the United States.',
-      'Neither provider uses this data to train their models. The transfer to the United States relies on the Swiss-US Data Privacy Framework and on standard contractual clauses.',
+      'Turning it into text happens at Microsoft, in a data centre inside the EU, as do the replies and the images. Your recording does not leave the EU.',
+      'Only the voices of the two use a service from ElevenLabs in the United States. Only the finished reply text is sent there, never a recording of you.',
+      'No provider uses this data to train their models. The transfer to the United States relies on the Swiss-US Data Privacy Framework and on standard contractual clauses.',
       'Nothing is stored on the machine in the exhibition room, neither audio nor words. Nothing remains that could be traced back to you.',
     ],
   },

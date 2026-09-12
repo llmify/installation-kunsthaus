@@ -122,7 +122,7 @@ ${c.thread
       <section class="section">
         <h2>${esc(c.pressHead)}</h2>
         <div class="press">
-          <div class="plinth" aria-hidden="true"><span class="knob"></span></div>
+          <div class="plinth" aria-hidden="true"><span class="knob"></span><span class="knob"></span></div>
           <div>
             <ol class="steps">
 ${c.pressSteps.map((s) => `              <li>${esc(s)}</li>`).join('\n')}
@@ -131,6 +131,8 @@ ${c.pressSteps.map((s) => `              <li>${esc(s)}</li>`).join('\n')}
           </div>
           <span class="cue" aria-hidden="true"><i></i>${esc(c.pressCue)}</span>
         </div>
+        <h3 class="sub-h">${esc(c.readHead)}</h3>
+        <p>${esc(c.readText)}</p>
       </section>`;
 }
 

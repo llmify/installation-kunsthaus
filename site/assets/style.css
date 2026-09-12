@@ -367,15 +367,25 @@ h2 {
   transform: none;
 }
 
+/* Zwischenüberschrift innerhalb eines Abschnitts, für den zweiten Knopf auf der
+   Startseite. Kleiner als h2, damit die Sprechfunktion die Hauptsache bleibt. */
+.sub-h {
+  margin: 2.2rem 0 0.4rem;
+  font: 600 15px var(--serif);
+  letter-spacing: 0.01em;
+}
+
 .plinth {
   flex: none;
-  width: 74px;
+  width: 108px;
   height: 74px;
   border-radius: 8px;
   background: #0b0b0b;
   border: 1px solid rgba(245, 239, 230, 0.12);
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
 .knob {
