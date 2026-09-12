@@ -158,7 +158,7 @@ const de = {
       'Die Umwandlung in Text geschieht bei Microsoft in einem Rechenzentrum in der EU, ebenso die Antworten und die Bilder. Ihre Aufnahme verlässt die EU nicht.',
       'Nur für die Stimmen der beiden wird ein Dienst von ElevenLabs in den USA genutzt. Dorthin geht ausschliesslich der fertige Antworttext, nie eine Aufnahme von Ihnen.',
       'Kein Anbieter verwendet die Daten zum Training seiner Modelle. Die Übermittlung in die USA stützt sich auf das Swiss-US Data Privacy Framework beziehungsweise auf Standardvertragsklauseln.',
-      'Auf dem Rechner im Ausstellungsraum wird weder Ton noch Wortlaut gespeichert. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
+      'Ihre Aufnahme wird nirgends abgelegt: weder auf dem Rechner im Ausstellungsraum noch beim Anbieter. Microsoft hält für diesen Dienst ausdrücklich fest, dass weder der Ton noch die daraus gewonnene Abschrift aufbewahrt werden. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
     ],
   },
 };
@@ -309,7 +309,7 @@ const fr = {
       "La conversion en texte a lieu chez Microsoft, dans un centre de données situé dans l'UE, tout comme les réponses et les images. Votre enregistrement ne quitte pas l'UE.",
       "Seules les voix des deux passent par un service d'ElevenLabs aux États-Unis. Seul le texte de réponse y est transmis, jamais un enregistrement de votre voix.",
       "Aucun prestataire n'utilise ces données pour entraîner ses modèles. Le transfert vers les États-Unis s'appuie sur le Swiss-US Data Privacy Framework ou sur des clauses contractuelles types.",
-      "Sur l'ordinateur de la salle, ni le son ni les mots ne sont conservés. Il ne reste rien qui puisse vous être attribué.",
+      "Votre enregistrement n'est conservé nulle part : ni sur l'ordinateur de la salle, ni chez le prestataire. Microsoft indique expressément que, pour ce service, ni le son ni la transcription qui en est tirée ne sont conservés. Il ne reste rien qui puisse vous être attribué.",
     ],
   },
 };
@@ -460,7 +460,7 @@ const en = {
       'Turning it into text happens at Microsoft, in a data centre inside the EU, as do the replies and the images. Your recording does not leave the EU.',
       'Only the voices of the two use a service from ElevenLabs in the United States. Only the finished reply text is sent there, never a recording of you.',
       'No provider uses this data to train their models. The transfer to the United States relies on the Swiss-US Data Privacy Framework and on standard contractual clauses.',
-      'Nothing is stored on the machine in the exhibition room, neither audio nor words. Nothing remains that could be traced back to you.',
+      'Your recording is not kept anywhere: not on the machine in the exhibition room, and not at the provider either. Microsoft states explicitly that for this service neither the audio nor the transcript derived from it is retained. Nothing remains that could be traced back to you.',
     ],
   },
 };
