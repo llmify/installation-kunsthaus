@@ -15,7 +15,7 @@
   --cream: #f5efe6;
   --tan: #d7a86e; /* Utobot, and the general accent */
   --slate: #8ba3ad; /* Dystobot — the cool counterpart */
-  --red: #e5484d; /* the button on the plinth, and only that */
+  --red: #e5484d; /* the buttons in the room, named in prose only */
   --soft: rgba(245, 239, 230, 0.82); /* secondary prose */
   --dim: rgba(245, 239, 230, 0.45); /* labels, captions, asides */
   --hair: rgba(245, 239, 230, 0.16);
@@ -373,39 +373,6 @@ h2 {
   margin: 2.2rem 0 0.4rem;
   font: 600 15px var(--serif);
   letter-spacing: 0.01em;
-}
-
-.plinth {
-  flex: none;
-  width: 108px;
-  height: 74px;
-  border-radius: 8px;
-  background: #0b0b0b;
-  border: 1px solid rgba(245, 239, 230, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.knob {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #ff6b6f, var(--red) 62%, #a8262a);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  transition: scale 120ms ease;
-}
-
-/* Pressing it does what pressing it does in the room. Decorative rather than
- * functional — the plinth is aria-hidden — so this is a reward for poking at
- * it, never the only way to learn the interaction. */
-.press:hover .knob {
-  scale: 1.08;
-}
-
-.press:active .knob {
-  scale: 0.9;
 }
 
 .steps {
@@ -917,10 +884,6 @@ a:focus-visible,
 
   .diagram [class*='st'] {
     animation: none;
-  }
-
-  .plinth {
-    background: #eee9e0;
   }
 
   .diagram {
