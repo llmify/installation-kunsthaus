@@ -149,7 +149,7 @@ const de = {
       { k: 'Stimmen', v: 'Sprachsynthese: ElevenLabs Flash v2.5' },
       {
         k: 'Regie',
-        v: 'Ein kleiner Rechner im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Gerechnet wird in den Rechenzentren der Anbieter.',
+        v: 'Ein kleiner Rechner im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Verarbeitet wird in den Rechenzentren der Anbieter.',
       },
     ],
     privacyHead: 'Was mit Ihrer Stimme geschieht',
@@ -300,7 +300,7 @@ const fr = {
       { k: 'Voix', v: 'Synthèse vocale : ElevenLabs Flash v2.5' },
       {
         k: 'Régie',
-        v: "Un petit ordinateur dans la salle. Il relie les services et décide qui parle quand. Les calculs, eux, ont lieu dans les centres de données des prestataires.",
+        v: "Un petit ordinateur dans la salle. Il relie les services et décide qui parle quand. Le traitement, lui, a lieu dans les centres de données des prestataires.",
       },
     ],
     privacyHead: 'Ce qui advient de votre voix',
@@ -451,7 +451,7 @@ const en = {
       { k: 'Voices', v: 'Speech synthesis: ElevenLabs Flash v2.5' },
       {
         k: 'Direction',
-        v: 'A small computer in the exhibition room. It connects the services and decides who speaks when. The computing itself happens in the providers’ data centres.',
+        v: 'A small computer in the exhibition room. It connects the services and decides who speaks when. The processing itself happens in the providers’ data centres.',
       },
     ],
     privacyHead: 'What happens to your voice',
