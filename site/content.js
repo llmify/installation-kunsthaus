@@ -143,10 +143,10 @@ const de = {
     ],
     stackHead: 'Woraus es besteht',
     stack: [
-      { k: 'Zuhören', v: 'Spracherkennung (Speech-to-Text), von Microsoft, in der EU' },
-      { k: 'Antworten', v: 'Grosses Sprachmodell (LLM), von Microsoft, in der EU' },
-      { k: 'Bilder', v: 'Bildgenerator (Text-to-Image), von Microsoft, in der EU' },
-      { k: 'Stimmen', v: 'Sprachsynthese (Text-to-Speech), von ElevenLabs' },
+      { k: 'Zuhören', v: 'Spracherkennung: Azure AI Speech, Rechenzentrum in der EU' },
+      { k: 'Antworten', v: 'Sprachmodell: GPT-5.6, über Azure' },
+      { k: 'Bilder', v: 'Bildgenerator: GPT-Image 1.5, über Azure' },
+      { k: 'Stimmen', v: 'Sprachsynthese: ElevenLabs Flash v2.5' },
       {
         k: 'Regie',
         v: 'Ein kleiner Rechner im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Gerechnet wird in den Rechenzentren der Anbieter.',
@@ -294,10 +294,10 @@ const fr = {
     ],
     stackHead: 'De quoi c’est fait',
     stack: [
-      { k: 'Écoute', v: 'Reconnaissance vocale (speech-to-text), par Microsoft, dans l’UE' },
-      { k: 'Réponses', v: 'Grand modèle de langage (LLM), par Microsoft, dans l’UE' },
-      { k: 'Images', v: "Générateur d'images (text-to-image), par Microsoft, dans l’UE" },
-      { k: 'Voix', v: 'Synthèse vocale (text-to-speech), par ElevenLabs' },
+      { k: 'Écoute', v: 'Reconnaissance vocale : Azure AI Speech, centre de données dans l’UE' },
+      { k: 'Réponses', v: 'Modèle de langage : GPT-5.6, via Azure' },
+      { k: 'Images', v: "Générateur d'images : GPT-Image 1.5, via Azure" },
+      { k: 'Voix', v: 'Synthèse vocale : ElevenLabs Flash v2.5' },
       {
         k: 'Régie',
         v: "Un petit ordinateur dans la salle. Il relie les services et décide qui parle quand. Les calculs, eux, ont lieu dans les centres de données des prestataires.",
@@ -445,10 +445,10 @@ const en = {
     ],
     stackHead: 'What it is made of',
     stack: [
-      { k: 'Listening', v: 'Speech recognition (speech-to-text), by Microsoft, in the EU' },
-      { k: 'Replies', v: 'Large language model (LLM), by Microsoft, in the EU' },
-      { k: 'Images', v: 'Image generator (text-to-image), by Microsoft, in the EU' },
-      { k: 'Voices', v: 'Speech synthesis (text-to-speech), by ElevenLabs' },
+      { k: 'Listening', v: 'Speech recognition: Azure AI Speech, data centre in the EU' },
+      { k: 'Replies', v: 'Language model: GPT-5.6, via Azure' },
+      { k: 'Images', v: 'Image generator: GPT-Image 1.5, via Azure' },
+      { k: 'Voices', v: 'Speech synthesis: ElevenLabs Flash v2.5' },
       {
         k: 'Direction',
         v: 'A small computer in the exhibition room. It connects the services and decides who speaks when. The computing itself happens in the providers’ data centres.',
