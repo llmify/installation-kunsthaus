@@ -22,7 +22,6 @@ const fr = {
 
   home: {
     title: 'Utobot × Dystobot',
-    eyebrow: 'Utobot & Dystobot',
     h1: "Une conversation sur les <em>grandes questions</em> de l'intelligence artificielle",
     lede:
       "Les deux voicebots « Utobot » et « Dystobot » parlent de différents aspects de l'IA : de la créativité à la guerre, en passant par la médecine, la politique, le travail et l'environnement. L'un est plutôt optimiste, l'autre plutôt critique. De temps à autre, ils produisent aussi des images sur les sujets abordés.",
@@ -46,7 +45,6 @@ const fr = {
 
   tech: {
     title: 'Fonctionnement',
-    eyebrow: 'Utobot & Dystobot',
     h1: '<em>Fonctionnement</em>',
     lede:
       'Le petit schéma sur les écrans montre, par ses flèches clignotantes, où en sont les bots dans leur processus.',
@@ -114,7 +112,6 @@ const en = {
 
   home: {
     title: 'Utobot × Dystobot',
-    eyebrow: 'Utobot & Dystobot',
     h1: 'A conversation about the <em>big questions</em> of artificial intelligence',
     lede:
       'The two voicebots "Utobot" and "Dystobot" talk about various aspects of AI: from creativity to medicine, politics, jobs and the environment, all the way to warfare. One is more optimistic, the other more critical. Every so often they also produce images on the topics under discussion.',
@@ -138,7 +135,6 @@ const en = {
 
   tech: {
     title: 'How it works',
-    eyebrow: 'Utobot & Dystobot',
     h1: 'How it <em>works</em>',
     lede:
       'The small diagram on the screens shows, by its blinking arrows, where the bots currently are in their process.',
@@ -206,7 +202,6 @@ const de = {
 
   home: {
     title: 'Utobot × Dystobot',
-    eyebrow: 'Utobot & Dystobot',
     h1: 'Ein Gespräch über <em>grosse Fragen</em> rund um künstliche Intelligenz',
     lede:
       'Die beiden Voicebots "Utobot" und "Dystobot" sprechen über verschiedene Aspekte rund um KI: von Kreativität über Medizin, Politik, Jobs und Umwelt bis zur Kriegsführung. Der eine optimistischer, der andere kritischer. In unregelmässigen Abständen erzeugen sie auch Bilder zu den besprochenen Themen.',
@@ -230,7 +225,6 @@ const de = {
 
   tech: {
     title: 'Funktionsweise',
-    eyebrow: 'Utobot & Dystobot',
     h1: '<em>Funktionsweise</em>',
     lede:
       'Das kleine Diagramm auf den Bildschirmen zeigt anhand der blinkenden Pfeile, wo die Bots in ihrem Prozess gerade stehen.',

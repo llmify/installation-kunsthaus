@@ -94,7 +94,6 @@ function diagram(d) {
 function homeBody(c) {
   return `
       <div class="page-head">
-        <p class="eyebrow">${esc(c.eyebrow)}</p>
         <h1>${c.h1}</h1>
         <p class="lede">${esc(c.lede)}</p>
       </div>
@@ -112,7 +111,6 @@ ${sec.paras.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
 function techBody(c) {
   return `
       <div class="page-head">
-        <p class="eyebrow">${esc(c.eyebrow)}</p>
         <h1>${c.h1}</h1>
         <p class="lede">${esc(c.lede)}</p>
       </div>
