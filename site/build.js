@@ -126,12 +126,9 @@ function techBody(c) {
       </div>
 
       <section class="section">
-        <input type="checkbox" id="diagram-zoom" class="zoom-toggle" />
-        <label for="diagram-zoom" class="diagram">
+        <div class="diagram">
 ${diagram({ ...c.diagram, aria: c.diagramAria })}
-          <span class="zoom-hint open" aria-hidden="true">${esc(c.zoomOpen)}</span>
-          <span class="zoom-hint close" aria-hidden="true">${esc(c.zoomClose)}</span>
-        </label>
+        </div>
         <ol class="legend">
 ${c.legend
   .map(

@@ -176,121 +176,12 @@ h2 {
 }
 
 /* --- diagram (page 2) ------------------------------------------------------ */
-/* The box is a <label> for a hidden checkbox, so a tap anywhere on it opens the
- * schematic full-screen and another tap closes it, without any script. */
 
 .diagram {
-  position: relative;
-  display: block;
   margin: 1.8rem 0 0;
   padding: 1.5rem 1rem;
   border: 1px solid var(--hair);
   border-radius: 4px;
-  cursor: zoom-in;
-}
-
-.zoom-toggle {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  pointer-events: none;
-}
-
-.zoom-toggle:focus-visible + .diagram {
-  outline: 2px solid var(--tan);
-  outline-offset: 3px;
-}
-
-.zoom-hint {
-  position: absolute;
-  right: 0.9rem;
-  bottom: 0.7rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4em;
-  font: 600 10.5px var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
-.zoom-hint::before {
-  content: '';
-  width: 0.7em;
-  height: 0.7em;
-  /* a corner bracket ⌝: the direction the box grows in */
-  border: 1.5px solid currentColor;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
-.zoom-hint.close {
-  display: none;
-}
-
-.zoom-toggle:checked + .diagram {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  margin: 0;
-  padding: 1rem;
-  border: none;
-  border-radius: 0;
-  background: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-}
-
-.zoom-toggle:checked + .diagram svg {
-  flex: none;
-  width: min(100vw - 2rem, calc((100vh - 2rem) * 500 / 322));
-}
-
-.zoom-toggle:checked + .diagram .zoom-hint.open {
-  display: none;
-}
-
-.zoom-toggle:checked + .diagram .zoom-hint.close {
-  display: flex;
-  right: 1.2rem;
-  bottom: auto;
-  top: 1.2rem;
-}
-
-.zoom-toggle:checked + .diagram .zoom-hint.close::before {
-  /* a cross: one stroke here, the other from ::after */
-  width: 0.8em;
-  height: 0;
-  border: none;
-  border-top: 1.5px solid currentColor;
-  transform: rotate(45deg);
-}
-
-.zoom-toggle:checked + .diagram .zoom-hint.close::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 0.8em;
-  border-top: 1.5px solid currentColor;
-  transform: rotate(-45deg);
-}
-
-/* Portrait phones: the width cap is the same as on the page, so full-screen
- * only helps if the schematic turns to use the long side. */
-@media (orientation: portrait) and (max-width: 48rem) {
-  .zoom-toggle:checked + .diagram svg {
-    width: min(calc(100vh - 2rem), calc((100vw - 2rem) * 500 / 322));
-    transform: rotate(90deg);
-  }
-}
-
-/* The page behind the overlay should not scroll. Progressive: browsers
- * without :has() simply keep scrolling underneath. */
-body:has(.zoom-toggle:checked) {
-  overflow: hidden;
 }
 
 /* Scales with the column, so a phone shows the whole schematic without a
@@ -397,10 +288,6 @@ body:has(.zoom-toggle:checked) {
 @media (prefers-reduced-motion: reduce) {
   .diagram [class*='st'] {
     animation: none;
-  }
-
-  .zoom-hint {
-    display: none;
   }
 }
 
@@ -601,10 +488,6 @@ a:focus-visible,
 
   .diagram [class*='st'] {
     animation: none;
-  }
-
-  .zoom-hint {
-    display: none;
   }
 
   .diagram {
