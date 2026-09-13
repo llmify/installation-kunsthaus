@@ -59,6 +59,8 @@ const fr = {
       stimme: 'Voix',
       bild: 'Image',
     },
+    zoomOpen: 'Agrandir',
+    zoomClose: 'Fermer',
     legend: [
       {
         title: 'Reconnaissance vocale',
@@ -149,6 +151,8 @@ const en = {
       stimme: 'Voice',
       bild: 'Image',
     },
+    zoomOpen: 'Enlarge',
+    zoomClose: 'Close',
     legend: [
       {
         title: 'Speech recognition',
@@ -239,6 +243,8 @@ const de = {
       stimme: 'Stimme',
       bild: 'Bild',
     },
+    zoomOpen: 'Vergrössern',
+    zoomClose: 'Schliessen',
     legend: [
       {
         title: 'Spracherkennung',
