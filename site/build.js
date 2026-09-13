@@ -7,7 +7,8 @@
 // on a phone with one bar of signal, and to print without a browser running
 // anything.
 
-const { mkdirSync, writeFileSync, copyFileSync, rmSync } = require('node:fs');
+const { mkdirSync, writeFileSync, copyFileSync, rmSync, readFileSync } = require('node:fs');
+const { createHash } = require('node:crypto');
 const { dirname, join, resolve } = require('node:path');
 
 const { PAGES, locales, REDIRECTS } = require('./content');
@@ -37,9 +38,18 @@ function hrefFrom(fromLocale, fromPage, toLocale, toPage) {
   return `${up}${target ? `${target}/` : ''}` || './';
 }
 
+// Pages caches assets for ten minutes. Without a version in the URL, a visitor
+// who loaded the site shortly before a deploy gets the new HTML with the old
+// stylesheet, and anything that depends on a new rule looks broken. A hash of
+// the file's content in the query string makes the link change with the file.
+const STYLE_HASH = createHash('sha256')
+  .update(readFileSync(join(__dirname, 'assets', 'style.css')))
+  .digest('hex')
+  .slice(0, 8);
+
 function assetHref(locale, page) {
   const depth = pathOf(locale, page).split('/').filter(Boolean).length;
-  return `${'../'.repeat(depth)}assets/style.css`;
+  return `${'../'.repeat(depth)}assets/style.css?v=${STYLE_HASH}`;
 }
 
 // --- the diagram -------------------------------------------------------------
