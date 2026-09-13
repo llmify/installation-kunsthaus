@@ -178,13 +178,6 @@ function render(locale, page) {
     )
     .join('\n');
 
-  // On paper the navigation is useless, so the other page is spelled out as a
-  // URL a reader can type, without the protocol nobody types.
-  const bare = SITE_BASE.replace(/^https?:\/\//, '');
-  const printedLinks = PAGES.filter((p) => p !== page)
-    .map((p) => `${esc(locale.navLabels[p])}: ${bare}${pathOf(locale, p)}`)
-    .join(' &nbsp;·&nbsp; ');
-
   return `<!DOCTYPE html>
 <html lang="${locale.lang}">
   <head>
@@ -208,12 +201,6 @@ ${langs}
 ${nav}
       </nav>
 ${BODIES[page](c)}
-
-      <footer class="colophon">
-        <span class="mono">${esc(locale.colophonTitle)}</span>
-        <p>${locale.credits}</p>
-        <p class="print-only"><strong>${esc(locale.otherPage)}:</strong> ${printedLinks}</p>
-      </footer>
     </div>
   </body>
 </html>

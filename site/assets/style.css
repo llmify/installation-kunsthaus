@@ -194,13 +194,14 @@ h2 {
   padding: 1.5rem 1rem;
   border: 1px solid var(--hair);
   border-radius: 4px;
-  overflow-x: auto;
 }
 
+/* Scales with the column, so a phone shows the whole schematic without a
+ * sideways scroll. The type shrinks with it, so below the phone breakpoint the
+ * labels are set larger in viewBox units to land at a readable size. */
 .diagram svg {
   display: block;
   width: 100%;
-  min-width: 460px;
   height: auto;
 }
 
@@ -239,6 +240,24 @@ h2 {
 .d-badge-text {
   font: 700 11px var(--mono);
   fill: var(--ink);
+}
+
+@media (max-width: 32rem) {
+  .diagram {
+    padding: 1rem 0.4rem;
+  }
+
+  .d-label {
+    font-size: 17px;
+  }
+
+  .d-caption {
+    font-size: 12px;
+  }
+
+  .d-badge-text {
+    font-size: 13px;
+  }
 }
 
 /* The signal travels the schematic on a loop: each element brightens as its
@@ -328,7 +347,7 @@ h2 {
   margin-top: 0.85rem;
 }
 
-/* --- key/value rows (stack, credits) -------------------------------------- */
+/* --- key/value rows (stack) -------------------------------------- */
 
 .rows {
   margin-top: 1.2rem;
@@ -360,32 +379,6 @@ h2 {
     grid-template-columns: 1fr;
     gap: 0.15rem;
   }
-}
-
-/* --- footer --------------------------------------------------------------- */
-
-.colophon {
-  margin-top: 3.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--hair);
-  font: 400 0.92rem/1.6 var(--serif);
-  color: var(--dim);
-}
-
-.colophon .mono {
-  font: 600 11.5px var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.colophon a {
-  color: inherit;
-}
-
-.print-only {
-  display: none;
 }
 
 a:focus-visible,
@@ -426,15 +419,11 @@ a:focus-visible,
     max-width: none;
   }
 
-  /* On paper the nav can't be followed, so it is replaced by the printed URLs
-   * in the colophon. The language switcher has no meaning at all. */
+  /* On paper the nav can't be followed and the language switcher has no
+   * meaning at all. */
   .site-nav,
   .langs {
     display: none;
-  }
-
-  .print-only {
-    display: block;
   }
 
   .masthead {
@@ -584,23 +573,6 @@ a:focus-visible,
 
   .privacy-cols p + p {
     margin-top: 0.45rem;
-  }
-
-  .colophon {
-    margin-top: 0.7rem;
-    padding-top: 0.5rem;
-    font-size: 8.5pt;
-  }
-
-  /* The German slugs are long enough to wrap this onto a second line; at this
-   * size it stays legible and the sheet stays one sheet. */
-  .print-only {
-    font-size: 7.8pt;
-    line-height: 1.35;
-  }
-
-  .colophon p + p {
-    margin-top: 0.3rem;
   }
 
   a {

@@ -19,10 +19,6 @@ const fr = {
   dirName: '', // French is the default; it lives at the site root
   slugs: { home: '', tech: 'fonctionnement' },
   navLabels: { home: "L'installation", tech: 'Fonctionnement' },
-  otherPage: "L'autre page",
-  colophonTitle: "À propos de l'installation",
-  credits:
-    "Par LLMify AG pour l'exposition <em>Künstliche Kreativität</em> à l'Aargauer Kunsthaus, du 26 septembre 2026 au 10 janvier 2027.",
 
   home: {
     title: 'Utobot × Dystobot',
@@ -115,10 +111,6 @@ const en = {
   dirName: 'en',
   slugs: { home: '', tech: 'how-it-works' },
   navLabels: { home: 'The installation', tech: 'How it works' },
-  otherPage: 'The other page',
-  colophonTitle: 'About the installation',
-  credits:
-    'By LLMify AG for the exhibition <em>Künstliche Kreativität</em> at Aargauer Kunsthaus, 26 September 2026 to 10 January 2027.',
 
   home: {
     title: 'Utobot × Dystobot',
@@ -211,10 +203,6 @@ const de = {
   dirName: 'de',
   slugs: { home: '', tech: 'funktionsweise' },
   navLabels: { home: 'Die Installation', tech: 'Funktionsweise' },
-  otherPage: 'Die andere Seite',
-  colophonTitle: 'Zur Installation',
-  credits:
-    'Von der LLMify AG für die Ausstellung <em>Künstliche Kreativität</em> im Aargauer Kunsthaus, 26. September 2026 bis 10. Januar 2027.',
 
   home: {
     title: 'Utobot × Dystobot',
