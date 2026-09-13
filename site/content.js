@@ -24,7 +24,7 @@ const fr = {
     title: 'Utobot × Dystobot',
     h1: "Une conversation sur les <em>grandes questions</em> de l'intelligence artificielle",
     lede:
-      "Les deux voicebots « Utobot » et « Dystobot » parlent de différents aspects de l'IA : de la créativité à la guerre, en passant par la médecine, la politique, le travail et l'environnement. L'un est plutôt optimiste, l'autre plutôt critique. De temps à autre, ils produisent aussi des images sur les sujets abordés.",
+      "Les deux voicebots «Utobot» et «Dystobot» parlent de différents aspects de l'IA : de la créativité à la guerre, en passant par la médecine, la politique, le travail et l'environnement. L'un est plutôt optimiste, l'autre plutôt critique. De temps à autre, ils produisent aussi des images sur les sujets abordés.",
     sections: [
       {
         head: 'Mêlez-vous à la conversation !',
