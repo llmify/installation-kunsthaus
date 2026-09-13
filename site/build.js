@@ -1,4 +1,4 @@
-// Generates the visitor site: three documents × three languages → site/dist/.
+// Generates the visitor site: two documents × three languages → site/dist/.
 //
 //   node site/build.js
 //
@@ -10,7 +10,7 @@
 const { mkdirSync, writeFileSync, copyFileSync, rmSync } = require('node:fs');
 const { dirname, join, resolve } = require('node:path');
 
-const { PAGES, locales } = require('./content');
+const { PAGES, locales, REDIRECTS } = require('./content');
 
 const OUT = resolve(__dirname, 'dist');
 // Printed on the paper version, where a link cannot be tapped, and encoded into
@@ -23,7 +23,7 @@ const SITE_BASE = 'https://llmify.ch/installation-kunsthaus/';
 const esc = (s) => String(s).replace(/&(?![a-z#0-9]+;)/gi, '&amp;').replace(/</g, '&lt;');
 
 // Where a given (locale, page) lives, relative to the site root: '' for the
-// German home page, 'fr/idees' for the French ideas page, and so on.
+// French home page, 'de/funktionsweise' for the German tech page, and so on.
 function pathOf(locale, page) {
   return [locale.dirName, locale.slugs[page]].filter(Boolean).join('/');
 }
@@ -98,65 +98,15 @@ function homeBody(c) {
         <h1>${c.h1}</h1>
         <p class="lede">${esc(c.lede)}</p>
       </div>
-
-      <section class="section">
-        <h2>${esc(c.introHead)}</h2>
-        <p>${esc(c.intro)}</p>
-      </section>
-
-      <section class="section">
-        <p class="eyebrow">${esc(c.threadHead)}</p>
-        <div class="thread">
-${c.thread
+${c.sections
   .map(
-    (t) => `          <div class="turn ${t.who}">
-            <span class="who">${t.who === 'utobot' ? 'Utobot' : 'Dystobot'}</span>
-            <p class="said">${esc(t.text)}</p>
-          </div>`,
-  )
-  .join('\n')}
-        </div>
-        <p class="aside">${esc(c.threadNote)}</p>
-      </section>
-
+    (sec) => `
       <section class="section">
-        <h2>${esc(c.pressHead)}</h2>
-        <div class="press">
-          <div>
-            <ol class="steps">
-${c.pressSteps.map((s) => `              <li>${esc(s)}</li>`).join('\n')}
-            </ol>
-            <p class="aside">${esc(c.pressNote)}</p>
-          </div>
-          <span class="cue" aria-hidden="true"><i></i>${esc(c.pressCue)}</span>
-        </div>
-        <h3 class="sub-h">${esc(c.readHead)}</h3>
-        <p>${esc(c.readText)}</p>
-      </section>`;
-}
-
-function ideasBody(c) {
-  return `
-      <div class="page-head">
-        <p class="eyebrow">${esc(c.eyebrow)}</p>
-        <h1>${c.h1}</h1>
-        <p class="lede">${esc(c.lede)}</p>
-      </div>
-
-      <section class="section">
-${c.groups
-  .map(
-    (g) => `        <div class="group">
-          <h3>${esc(g.title)}</h3>
-          <p>${esc(g.text)}</p>
-          <ul class="prompts">
-${g.prompts.map((p) => `            <li>${esc(p)}</li>`).join('\n')}
-          </ul>
-        </div>`,
+        <h2>${esc(sec.head)}</h2>
+${sec.paras.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
+      </section>`,
   )
-  .join('\n')}
-        <p class="aside">${esc(c.note)}</p>
-      </section>`;
+  .join('\n')}`;
 }
 
 function techBody(c) {
@@ -171,7 +121,6 @@ function techBody(c) {
         <div class="diagram">
 ${diagram({ ...c.diagram, aria: c.diagramAria })}
         </div>
-        <p class="eyebrow legend-head">${esc(c.legendHead)}</p>
         <ol class="legend">
 ${c.legend
   .map(
@@ -182,21 +131,21 @@ ${c.legend
       </section>
 
       <section class="section">
-        <h2>${esc(c.stackHead)}</h2>
-        <dl class="rows">
-${c.stack.map((r) => `          <div><dt>${esc(r.k)}</dt><dd>${esc(r.v)}</dd></div>`).join('\n')}
-        </dl>
-      </section>
-
-      <section class="section">
         <h2>${esc(c.privacyHead)}</h2>
         <div class="privacy-cols">
 ${c.privacy.map((p) => `          <p>${esc(p)}</p>`).join('\n')}
         </div>
+      </section>
+
+      <section class="section">
+        <h2>${esc(c.stackHead)}</h2>
+        <dl class="rows">
+${c.stack.map((r) => `          <div><dt>${esc(r.k)}</dt><dd>${esc(r.v)}</dd></div>`).join('\n')}
+        </dl>
       </section>`;
 }
 
-const BODIES = { home: homeBody, ideas: ideasBody, tech: techBody };
+const BODIES = { home: homeBody, tech: techBody };
 
 // --- shell -------------------------------------------------------------------
 
@@ -229,8 +178,8 @@ function render(locale, page) {
     )
     .join('\n');
 
-  // On paper the navigation is useless, so the other two pages are spelled out
-  // as URLs a reader can type — on one line, without the protocol nobody types.
+  // On paper the navigation is useless, so the other page is spelled out as a
+  // URL a reader can type, without the protocol nobody types.
   const bare = SITE_BASE.replace(/^https?:\/\//, '');
   const printedLinks = PAGES.filter((p) => p !== page)
     .map((p) => `${esc(locale.navLabels[p])}: ${bare}${pathOf(locale, p)}`)
@@ -263,9 +212,31 @@ ${BODIES[page](c)}
       <footer class="colophon">
         <span class="mono">${esc(locale.colophonTitle)}</span>
         <p>${locale.credits}</p>
-        <p class="print-only"><strong>${esc(locale.otherPages)}:</strong> ${printedLinks}</p>
+        <p class="print-only"><strong>${esc(locale.otherPage)}:</strong> ${printedLinks}</p>
       </footer>
     </div>
+  </body>
+</html>
+`;
+}
+
+// --- redirect stubs ----------------------------------------------------------
+
+function redirect(from, to) {
+  const depth = from.split('/').filter(Boolean).length;
+  const href = `${'../'.repeat(depth)}${to ? `${to}/` : ''}` || './';
+  const canonical = `${SITE_BASE}${to}${to ? '/' : ''}`;
+  return `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=${href}" />
+    <link rel="canonical" href="${canonical}" />
+    <meta name="robots" content="noindex" />
+    <title>Utobot × Dystobot</title>
+  </head>
+  <body>
+    <a href="${href}">${canonical}</a>
   </body>
 </html>
 `;
@@ -284,6 +255,15 @@ function main() {
       writeFileSync(file, render(locale, page));
       count++;
     }
+  }
+
+  // Forwarding stubs for the paths the site had before the restructure. Pages
+  // has no server-side redirects, so a meta refresh is the only option; the
+  // canonical link keeps search engines on the real page.
+  for (const [from, to] of Object.entries(REDIRECTS)) {
+    const file = join(OUT, from, 'index.html');
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, redirect(from, to));
   }
 
   mkdirSync(join(OUT, 'assets'), { recursive: true });

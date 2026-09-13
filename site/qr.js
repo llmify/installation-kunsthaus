@@ -1,6 +1,7 @@
-// Generates the three QR codes for the exhibition — one per document, pointing
-// at the German pages, which is where a visitor in Aarau starts. The language
-// switcher on each page covers the rest, so three codes are enough.
+// Generates the QR codes for the exhibition — one per document, pointing at
+// the default-language pages at the site root (French). The language switcher
+// on each page covers the rest, so one code per document is enough. `site.png`
+// is the one to print: it opens the home page.
 //
 //   node site/qr.js                       # uses SITE_BASE from build.js
 //   node site/qr.js https://utobot.ch/    # regenerate for a different domain
@@ -26,12 +27,12 @@ const OPTS = { errorCorrectionLevel: 'M', margin: 4, scale: 12 };
 
 async function main() {
   mkdirSync(OUT, { recursive: true });
-  const de = locales.find((l) => l.lang === 'de');
+  const [root] = locales; // the default language lives at the site root
 
   for (const page of PAGES) {
-    const path = [de.dirName, de.slugs[page]].filter(Boolean).join('/');
+    const path = [root.dirName, root.slugs[page]].filter(Boolean).join('/');
     const url = `${base}${path}${path ? '/' : ''}`;
-    const name = page === 'home' ? 'haupt' : de.slugs[page];
+    const name = page === 'home' ? 'site' : root.slugs[page];
 
     writeFileSync(join(OUT, `${name}.svg`), await QRCode.toString(url, { ...OPTS, type: 'svg' }));
     writeFileSync(join(OUT, `${name}.png`), await QRCode.toBuffer(url, OPTS));

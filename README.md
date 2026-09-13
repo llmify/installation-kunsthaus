@@ -1,15 +1,18 @@
 # Utobot × Dystobot — visitor information
 
-The three information pages for the installation *Utobot × Dystobot* in the
+The two information pages for the installation *Utobot × Dystobot* in the
 exhibition **Künstliche Kreativität** at the Aargauer Kunsthaus
-(26 September 2026 – 10 January 2027), reached by three QR codes in the room.
+(26 September 2026 – 10 January 2027), reached by a QR code in the room.
 
-- **Die Installation** — what the two voices are, and how to speak to them
-- **Mitreden** — things worth saying to them
-- **Hinter den Kulissen** — the diagram on the screens, explained
+- **L'installation / Die Installation** — what the two bots are, and how to
+  speak to them (the "Basisinformationen" handout)
+- **Fonctionnement / Funktionsweise** — the diagram on the screens, explained,
+  what happens to voice recordings, and the components (the "Funktionsweise"
+  handout)
 
-Each page links to the other two, so a visitor never has to scan more than one
-code. German, French and English.
+Each page links to the other, so a visitor never has to scan more than one
+code. French (at the site root, the default), English and German. The German
+text is the printed handouts verbatim; the other two are translations of it.
 
 Live at <https://llmify.ch/installation-kunsthaus/>.
 
@@ -29,18 +32,18 @@ directly to preview — links are relative, so it works from `file://` too.
 
 **All copy for all three languages lives in `site/content.js`.** Changing text
 means changing that file and nothing else; `site/build.js` is assembly only.
-Slugs are per-language because a printed URL gets typed by hand.
+Slugs are per-language because a printed URL gets typed by hand. The paths the
+site had before the restructure (German at the root, a third "Mitreden" page)
+are kept as forwarding stubs, listed in `REDIRECTS` in `content.js`.
 
 ## Printing
 
 Each document is designed to print as one A4 sheet: the palette inverts, the
-navigation is replaced by the other two URLs spelled out, and the list-heavy
+navigation is replaced by the other page's URL spelled out, and the list-heavy
 sections set two columns to use the sheet's full width.
 
-*Die Installation* and *Mitreden* fit one sheet in all three languages.
-*Hinter den Kulissen* currently runs to a second sheet — roughly 45 mm past
-what A4 holds at a size an exhibition audience can comfortably read. Shortening
-it is a copy decision, not a layout one.
+*L'installation* fits one sheet in all three languages. *Fonctionnement* runs
+to a second sheet; the printed handout is the primary paper version anyway.
 
 ## Moving to another domain
 

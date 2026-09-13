@@ -1,261 +1,59 @@
-// All visitor-facing copy, in one place. build.js turns this into nine pages
-// (three documents × three languages). Editing text here is the whole workflow —
+// All visitor-facing copy, in one place. build.js turns this into six pages
+// (two documents × three languages). Editing text here is the whole workflow —
 // there is no CMS and no other copy of these strings.
 //
-// Two house rules for the prose:
-//   - No em dashes. Use a colon, a comma or a full stop instead.
-//   - Anything naming a topic the bots discuss must match a real brief in
-//     prompts/topics/{utobot,dystobot}/ in the installation repo. Inventing a
-//     plausible-sounding one puts a promise on the wall the room cannot keep.
+// The German text is the two printed handouts, verbatim:
+//   20260910 Handout Utobot-Dystobot - Basisinformationen  → home
+//   20260912 Handout Utobot-Dystobot - Funktionsweise      → tech
+// French and English are translations of those. Change the handout, then
+// change this file; never the other way round.
 //
 // Slugs are per-language because a printed URL is read aloud and typed by hand.
+// French lives at the site root and is listed first in the language switcher.
 
-const PAGES = ['home', 'ideas', 'tech'];
-
-const de = {
-  lang: 'de',
-  label: 'DE',
-  dirName: '', // German is the default; it lives at the site root
-  slugs: { home: '', ideas: 'ideen', tech: 'hinter-den-kulissen' },
-  navLabels: { home: 'Die Installation', ideas: 'Mitreden', tech: 'Hinter den Kulissen' },
-  otherPages: 'Die anderen beiden Seiten',
-  colophonTitle: 'Zur Installation',
-  credits:
-    'Von der LLMify AG für die Ausstellung <em>Künstliche Kreativität</em> im Aargauer Kunsthaus, 26. September 2026 bis 10. Januar 2027.',
-
-  home: {
-    title: 'Utobot × Dystobot',
-    eyebrow: 'Die Installation',
-    h1: 'Ein Gespräch über die <em>grossen Fragen</em> der künstlichen Intelligenz.',
-    lede:
-      'Auf den beiden Bildschirmen sprechen zwei künstliche Stimmen miteinander, ohne Skript und ohne Ende. Was sie sagen, entsteht in dem Moment, in dem Sie es hören.',
-    introHead: 'Wer hier spricht',
-    intro:
-      'Utobot sieht in der Technik eine Möglichkeit: mehr Zeit, mehr Zugang, neue Formen von Schönheit. Dystobot sieht, was dabei verloren geht: Handwerk, Vertrauen, Macht, die sich sammelt. Keiner von beiden ist Zyniker oder Prediger. Sie hören einander zu, und sie widersprechen sich.',
-    threadHead: 'Ein Ausschnitt',
-    thread: [
-      {
-        who: 'utobot',
-        text: 'Wer nie zeichnen gelernt hat, kann eine Bildidee heute sichtbar machen und sie jemandem zeigen. In der Schule ist das ein Einstieg, kein Ersatz.',
-      },
-      {
-        who: 'dystobot',
-        text: 'Trainiert wurde auf Arbeiten von Illustratorinnen und Illustratoren, die weder gefragt noch bezahlt wurden. Utobot, das ist zuerst eine Umverteilung.',
-      },
-      {
-        who: 'utobot',
-        text: 'Dann ist die Frage, wie vergütet wird, nicht ob das Werkzeug bleibt. Diese Debatte gab es bei der Fotografie schon einmal.',
-      },
-    ],
-    threadNote:
-      'Alle paar Minuten wechseln sie das Thema: von personalisierter Bildung zu Machtkonzentration, von neuen Kunstformen zu den ökologischen Kosten. Zu manchen ihrer Gedanken entsteht ein Bild, das hinter ihnen erscheint.',
-    pressHead: 'Sie können mitreden',
-    pressSteps: [
-      'Halten Sie den linken roten Knopf gedrückt.',
-      'Sprechen Sie, während er gedrückt bleibt: eine Frage, ein Einwand, ein Vorschlag.',
-      'Lassen Sie los. Die beiden hören zu und antworten Ihnen.',
-    ],
-    pressCue: 'Jetzt sprechen …',
-    pressNote:
-      'Wenn gerade jemand spricht, unterbrechen Sie ihn. Das ist so vorgesehen, Sie müssen nicht warten.',
-    readHead: 'Gesprochenes mitlesen',
-    readText:
-      'Fällt es schwer, den beiden zu folgen, drücken Sie den rechten roten Knopf: Was gesagt wird, erscheint dann auf den Bildschirmen. Nach einer Weile blendet es sich von selbst wieder aus. Drücken Sie erneut, wenn Sie weiterlesen möchten.',
-  },
-
-  ideas: {
-    title: 'Mitreden',
-    eyebrow: 'Ideen',
-    h1: 'Wie Sie <em>mitmachen</em> können.',
-    lede:
-      'Die beiden reagieren auf alles, was sie hören. Am interessantesten wird es, wenn Sie ihnen widersprechen oder sie auseinanderbringen.',
-    groups: [
-      {
-        title: 'Mischen Sie sich ein',
-        text: 'Stellen Sie sich auf eine Seite, oder gegen beide.',
-        prompts: [
-          'Dystobot, du bist mir zu pessimistisch.',
-          'Utobot, das klingt wie eine Werbebroschüre.',
-          'Ihr redet beide an der Sache vorbei.',
-        ],
-      },
-      {
-        title: 'Sprechen Sie Ihre Sprache',
-        text:
-          'Sie verstehen Deutsch, Französisch, Italienisch, Englisch und viele weitere Sprachen und antworten in der Sprache, in der Sie sie ansprechen. Auch Dialekt funktioniert oft.',
-        prompts: ['Parlez-vous français, tous les deux?', 'Könnt ihr das auf Englisch erklären?'],
-      },
-      {
-        title: 'Haken Sie nach',
-        text: 'Am ergiebigsten wird es, wenn die beiden nicht einfach ihre Rolle weiterspielen können.',
-        prompts: [
-          'Wo könntet ihr euch irren?',
-          'Worauf könnt ihr euch beide einigen?',
-          'Nennt mir ein konkretes Beispiel.',
-        ],
-      },
-    ],
-    note:
-      'Wenn nichts Verständliches ankommt, weil es zu leise war oder zu viel Umgebungslärm herrscht, merken die beiden das und sagen es Ihnen. Probieren Sie es dann einfach noch einmal, etwas näher am Mikrofon.',
-  },
-
-  tech: {
-    title: 'Hinter den Kulissen',
-    eyebrow: 'Technik',
-    h1: 'Was <em>zwischen</em> Frage und Antwort passiert.',
-    lede:
-      'Das kleine Diagramm auf den Bildschirmen zeigt diesen Weg live mit: Ein Punkt füllt sich, wenn ein Teil fertig ist, ein Pfeil leuchtet, während daran gearbeitet wird.',
-    diagramAria:
-      'Ablaufschema: Audio der Besucher/in wird zu Text und fliesst ins Gespräch; aus dem Gespräch entsteht Text, daraus Stimme und Bild.',
-    diagram: {
-      caption: 'Besucher/in',
-      audio: 'Audio',
-      vtext: 'Text',
-      konv: 'Gespräch',
-      text: 'Text',
-      stimme: 'Stimme',
-      bild: 'Bild',
-    },
-    legendHead: 'Die Pfeile',
-    legend: [
-      {
-        title: 'Spracherkennung',
-        text: 'Solange der Knopf gedrückt ist, wird der Ton aufgenommen und in Text umgewandelt.',
-      },
-      {
-        title: 'Einwurf ins Gespräch',
-        text: 'Ihr Satz wird Teil des Gesprächsverlaufs, genau wie die Beiträge der beiden Stimmen.',
-      },
-      {
-        title: 'Sprachmodell',
-        text:
-          'Aus dem bisherigen Gespräch schreibt ein Sprachmodell die nächste Antwort. Es sieht nur den Verlauf und die Rolle, die es spielt. Den Rest erfindet es jedes Mal neu.',
-      },
-      {
-        title: 'Sprachsynthese',
-        text: 'Der Text wird in eine Stimme verwandelt. Jeder der beiden hat eine eigene.',
-      },
-      {
-        title: 'Bildgenerator',
-        text:
-          'Passt ein Bild zum Gedanken, entsteht es parallel und erscheint hinter der Stimme, die gerade spricht.',
-      },
-    ],
-    stackHead: 'Woraus es besteht',
-    stack: [
-      { k: 'Zuhören', v: 'Spracherkennung: Azure AI Speech, Rechenzentrum in der EU' },
-      { k: 'Antworten', v: 'Sprachmodell: GPT-5.6, über Azure' },
-      { k: 'Bilder', v: 'Bildgenerator: GPT-Image 1.5, über Azure' },
-      { k: 'Stimmen', v: 'Sprachsynthese: ElevenLabs Flash v2.5' },
-      {
-        k: 'Regie',
-        v: 'Ein kleiner Rechner im Ausstellungsraum. Er verbindet die Dienste und bestimmt, wer wann spricht. Verarbeitet wird in den Rechenzentren der Anbieter.',
-      },
-    ],
-    privacyHead: 'Was mit Ihrer Stimme geschieht',
-    privacy: [
-      'Aufgenommen wird nur, solange Sie den Knopf gedrückt halten, sonst hört das Mikrofon nicht mit.',
-      'Die Umwandlung in Text übernimmt Microsoft, in einem Rechenzentrum in der EU. Dort entstehen auch die Antworten der beiden und die Bilder. Ihre Stimme verlässt die EU also nicht.',
-      'In die USA geht nur ein Schritt: die Stimmen der beiden stammen von ElevenLabs. Übermittelt wird dorthin ausschliesslich ihr Text, nie eine Aufnahme von Ihnen. Für diese Übermittlung gelten die vertraglichen Garantien, die das Datenschutzrecht dafür verlangt.',
-      'Kein Anbieter verwendet die Daten, um seine Modelle zu trainieren.',
-      'Ihre Aufnahme wird nirgends abgelegt: weder auf dem Rechner im Ausstellungsraum noch beim Anbieter. Microsoft hält für diesen Dienst ausdrücklich fest, dass weder der Ton noch die daraus gewonnene Abschrift aufbewahrt werden. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
-    ],
-  },
-};
+const PAGES = ['home', 'tech'];
 
 const fr = {
   lang: 'fr',
   label: 'FR',
-  dirName: 'fr',
-  slugs: { home: '', ideas: 'idees', tech: 'coulisses' },
-  navLabels: { home: "L'installation", ideas: 'Participer', tech: 'Dans les coulisses' },
-  otherPages: 'Les deux autres pages',
+  dirName: '', // French is the default; it lives at the site root
+  slugs: { home: '', tech: 'fonctionnement' },
+  navLabels: { home: "L'installation", tech: 'Fonctionnement' },
+  otherPage: "L'autre page",
   colophonTitle: "À propos de l'installation",
   credits:
     "Par LLMify AG pour l'exposition <em>Künstliche Kreativität</em> à l'Aargauer Kunsthaus, du 26 septembre 2026 au 10 janvier 2027.",
 
   home: {
     title: 'Utobot × Dystobot',
-    eyebrow: "L'installation",
-    h1: "Une conversation sur les <em>grandes questions</em> de l'intelligence artificielle.",
+    eyebrow: 'Utobot & Dystobot',
+    h1: "Une conversation sur les <em>grandes questions</em> de l'intelligence artificielle",
     lede:
-      "Sur les deux écrans, deux voix artificielles se parlent, sans script et sans fin. Ce qu'elles disent naît à l'instant où vous l'entendez.",
-    introHead: 'Qui parle ici',
-    intro:
-      "Utobot voit dans la technique une possibilité : plus de temps, plus d'accès, de nouvelles formes de beauté. Dystobot voit ce qui se perd en chemin : le métier, la confiance, le pouvoir qui se concentre. Aucun des deux n'est cynique ni prêcheur. Ils s'écoutent, et ils se contredisent.",
-    threadHead: 'Un extrait',
-    thread: [
+      "Les deux voicebots « Utobot » et « Dystobot » parlent de différents aspects de l'IA : de la créativité à la guerre, en passant par la médecine, la politique, le travail et l'environnement. L'un est plutôt optimiste, l'autre plutôt critique. De temps à autre, ils produisent aussi des images sur les sujets abordés.",
+    sections: [
       {
-        who: 'utobot',
-        text: "Quelqu'un qui n'a jamais appris à dessiner peut aujourd'hui rendre une idée visible et la montrer. À l'école, c'est une porte d'entrée, pas un remplacement.",
-      },
-      {
-        who: 'dystobot',
-        text: "L'entraînement s'est fait sur le travail d'illustratrices et d'illustrateurs qui n'ont été ni consultés ni payés. Utobot, c'est d'abord une redistribution.",
-      },
-      {
-        who: 'utobot',
-        text: "Alors la question est de savoir comment rémunérer, pas si l'outil restera. Ce débat a déjà eu lieu pour la photographie.",
-      },
-    ],
-    threadNote:
-      "Toutes les quelques minutes, ils changent de sujet : de l'éducation personnalisée à la concentration du pouvoir, des nouvelles formes d'art au coût écologique. Certaines de leurs pensées donnent naissance à une image qui apparaît derrière eux.",
-    pressHead: 'Vous pouvez participer',
-    pressSteps: [
-      'Maintenez le bouton rouge de gauche enfoncé.',
-      "Parlez pendant qu'il reste enfoncé : une question, une objection, une proposition.",
-      'Relâchez. Ils vous écoutent et vous répondent.',
-    ],
-    pressCue: 'Parlez maintenant …',
-    pressNote:
-      "Si quelqu'un parle à ce moment-là, vous l'interrompez. C'est prévu ainsi, vous n'avez pas à attendre.",
-    readHead: 'Lire ce qui se dit',
-    readText:
-      "Si vous avez du mal à les suivre, appuyez sur le bouton rouge de droite : ce qui se dit apparaît alors sur les écrans. L'affichage s'arrête de lui-même au bout d'un moment. Appuyez à nouveau pour continuer à lire.",
-  },
-
-  ideas: {
-    title: 'Participer',
-    eyebrow: 'Idées',
-    h1: 'Comment <em>participer</em>.',
-    lede:
-      "Ils réagissent à tout ce qu'ils entendent. Cela devient intéressant quand vous les contredisez ou que vous les séparez.",
-    groups: [
-      {
-        title: 'Intervenez',
-        text: "Rangez-vous d'un côté, ou contre les deux.",
-        prompts: [
-          'Dystobot, tu es bien trop pessimiste.',
-          "Utobot, on dirait une brochure publicitaire.",
-          'Vous passez tous les deux à côté du sujet.',
+        head: 'Mêlez-vous à la conversation !',
+        paras: [
+          'Vous avez une question ou une objection ? Vous aimeriez que les bots changent de sujet ?',
+          'Interrompez les bots à tout moment en maintenant le bouton rouge de gauche enfoncé et en parlant dans le micro. Les bots vous écoutent. Quand vous avez fini de parler, relâchez le bouton rouge.',
+          "Vous pouvez aussi parler aux bots dans une autre langue que l'allemand. Ils vous répondront dans la langue choisie.",
         ],
       },
       {
-        title: 'Parlez votre langue',
-        text:
-          "Ils comprennent le français, l'allemand, l'italien, l'anglais et bien d'autres langues, et répondent dans celle que vous employez.",
-        prompts: ['Parlez-vous français, tous les deux ?', 'Pouvez-vous expliquer cela en anglais ?'],
-      },
-      {
-        title: 'Insistez',
-        text: "C'est le plus intéressant quand les deux ne peuvent pas simplement continuer à jouer leur rôle.",
-        prompts: [
-          'Où pourriez-vous vous tromper ?',
-          "Sur quoi pouvez-vous tous les deux vous mettre d'accord ?",
-          'Donnez-moi un exemple concret.',
+        head: 'Afficher les textes parlés',
+        paras: [
+          "Si vous avez du mal à comprendre ce qui est dit, vous pouvez afficher les textes. Appuyez pour cela sur le bouton rouge de droite. Les textes apparaissent sur les écrans. Au bout d'un moment, l'affichage s'arrête de lui-même. Si vous souhaitez continuer à lire, appuyez simplement à nouveau sur le bouton rouge de droite.",
         ],
       },
     ],
-    note:
-      "Si rien de compréhensible n'arrive, parce que c'était trop bas ou qu'il y a trop de bruit autour, ils s'en aperçoivent et vous le disent. Réessayez simplement, un peu plus près du micro.",
   },
 
   tech: {
-    title: 'Dans les coulisses',
-    eyebrow: 'Technique',
-    h1: 'Ce qui se passe <em>entre</em> la question et la réponse.',
+    title: 'Fonctionnement',
+    eyebrow: 'Utobot & Dystobot',
+    h1: '<em>Fonctionnement</em>',
     lede:
-      "Le petit schéma sur les écrans montre ce trajet en direct : un point se remplit lorsqu'une étape est terminée, une flèche s'allume pendant qu'on y travaille.",
+      'Le petit schéma sur les écrans montre, par ses flèches clignotantes, où en sont les bots dans leur processus.',
     diagramAria:
       "Schéma : l'audio du visiteur devient du texte et rejoint la conversation ; de la conversation naît un texte, puis une voix et une image.",
     diagram: {
@@ -267,49 +65,46 @@ const fr = {
       stimme: 'Voix',
       bild: 'Image',
     },
-    legendHead: 'Les flèches',
     legend: [
       {
         title: 'Reconnaissance vocale',
-        text: 'Tant que le bouton est enfoncé, le son est enregistré puis converti en texte.',
+        text: 'Tant que vous maintenez le bouton rouge de gauche enfoncé, vos paroles sont enregistrées et converties en texte.',
       },
       {
         title: 'Entrée dans la conversation',
-        text: 'Votre phrase rejoint le fil de la conversation, au même titre que les tours des deux voix.',
+        text: "Le texte que vous avez prononcé rejoint le fil de la conversation, et les deux bots y réagiront. Les deux premières étapes ne s'affichent que lorsque quelqu'un parle aux bots.",
       },
       {
         title: 'Modèle de langage',
-        text:
-          "À partir de la conversation en cours, un modèle de langage écrit la réponse suivante. Il ne voit que le fil et le rôle qu'il joue. Le reste, il l'invente à chaque fois.",
+        text: 'Le bot rédige la prochaine intervention. Elle repose sur la conversation jusque-là et sur le rôle qui lui a été attribué. Le contenu est recréé à chaque fois.',
       },
       {
         title: 'Synthèse vocale',
-        text: 'Le texte devient une voix. Chacun des deux a la sienne.',
+        text: 'Le texte écrit est converti en parole.',
       },
       {
         title: "Générateur d'images",
-        text:
-          "Si une image convient à la pensée, elle est produite en parallèle et apparaît derrière la voix qui parle.",
+        text: 'De temps à autre, les bots génèrent des images sur les sujets de la conversation.',
       },
     ],
-    stackHead: 'De quoi c’est fait',
+    privacyHead: 'Que deviennent les enregistrements vocaux ?',
+    privacy: [
+      "L'enregistrement n'a lieu que tant que vous maintenez le bouton rouge enfoncé ; sinon, le micro n'écoute pas.",
+      "La conversion en texte est assurée par Microsoft, dans un centre de données situé dans l'UE. C'est là aussi que naissent les réponses des bots et les images. Votre voix ne quitte donc pas l'UE, et Microsoft ne conserve ni l'enregistrement ni le texte qui en est tiré.",
+      "Une seule étape passe par les États-Unis : les voix des deux bots viennent d'ElevenLabs. Seul le texte des bots y est transmis, jamais un enregistrement de vous. Ce transfert est couvert par les garanties contractuelles exigées par le droit de la protection des données.",
+      "Aucun prestataire n'utilise ces données pour entraîner ses modèles.",
+      "Sur l'ordinateur de la salle d'exposition, ni le son ni les paroles ne sont enregistrés. Il ne reste rien qui puisse vous être attribué.",
+    ],
+    stackHead: 'Composants du système',
     stack: [
-      { k: 'Écoute', v: 'Reconnaissance vocale : Azure AI Speech, centre de données dans l’UE' },
-      { k: 'Réponses', v: 'Modèle de langage : GPT-5.6, via Azure' },
-      { k: 'Images', v: "Générateur d'images : GPT-Image 1.5, via Azure" },
-      { k: 'Voix', v: 'Synthèse vocale : ElevenLabs Flash v2.5' },
+      { k: 'Textes', v: 'LLM (grand modèle de langage) GPT-5.6 d’OpenAI, exploité via Azure' },
+      { k: 'Voix', v: 'Text-to-Speech (synthèse vocale) Flash v2.5 d’ElevenLabs' },
+      { k: 'Images', v: 'Text-to-Image (générateur d’images) GPT-Image 1.5 d’OpenAI, exploité via Azure' },
+      { k: 'Reconnaissance vocale', v: 'Speech-to-Text (reconnaissance vocale) Azure AI Speech de Microsoft' },
       {
         k: 'Régie',
-        v: "Un petit ordinateur dans la salle. Il relie les services et décide qui parle quand. Le traitement, lui, a lieu dans les centres de données des prestataires.",
+        v: 'Un MacBook Pro M1. Il relie les différents services d’IA entre eux et décide qui parle quand. Les calculs proprement dits ont lieu dans les centres de données des prestataires concernés.',
       },
-    ],
-    privacyHead: 'Ce qui advient de votre voix',
-    privacy: [
-      "L'enregistrement n'a lieu que tant que vous maintenez le bouton, sinon le micro n'écoute pas.",
-      "La conversion en texte est assurée par Microsoft, dans un centre de données situé dans l'UE. C'est là que naissent aussi les réponses des deux et les images. Votre voix ne quitte donc pas l'UE.",
-      "Une seule étape passe par les États-Unis : les voix des deux viennent d'ElevenLabs. Seul leur texte y est transmis, jamais un enregistrement de votre voix. Ce transfert est couvert par les garanties contractuelles exigées par le droit de la protection des données.",
-      "Aucun prestataire n'utilise ces données pour entraîner ses modèles.",
-      "Votre enregistrement n'est conservé nulle part : ni sur l'ordinateur de la salle, ni chez le prestataire. Microsoft indique expressément que, pour ce service, ni le son ni la transcription qui en est tirée ne sont conservés. Il ne reste rien qui puisse vous être attribué.",
     ],
   },
 };
@@ -318,95 +113,43 @@ const en = {
   lang: 'en',
   label: 'EN',
   dirName: 'en',
-  slugs: { home: '', ideas: 'join-in', tech: 'behind-the-scenes' },
-  navLabels: { home: 'The installation', ideas: 'Join in', tech: 'Behind the scenes' },
-  otherPages: 'The other two pages',
+  slugs: { home: '', tech: 'how-it-works' },
+  navLabels: { home: 'The installation', tech: 'How it works' },
+  otherPage: 'The other page',
   colophonTitle: 'About the installation',
   credits:
     'By LLMify AG for the exhibition <em>Künstliche Kreativität</em> at Aargauer Kunsthaus, 26 September 2026 to 10 January 2027.',
 
   home: {
     title: 'Utobot × Dystobot',
-    eyebrow: 'The installation',
-    h1: 'A conversation about the <em>big questions</em> of artificial intelligence.',
+    eyebrow: 'Utobot & Dystobot',
+    h1: 'A conversation about the <em>big questions</em> of artificial intelligence',
     lede:
-      'On the two screens, two artificial voices talk to each other, unscripted and without end. What they say is made in the moment you hear it.',
-    introHead: 'Who is speaking',
-    intro:
-      'Utobot sees possibility in the technology: more time, wider access, new kinds of beauty. Dystobot sees what gets lost along the way: craft, trust, power gathering in fewer hands. Neither is a cynic or a preacher. They listen to each other, and they disagree.',
-    threadHead: 'A fragment',
-    thread: [
+      'The two voicebots "Utobot" and "Dystobot" talk about various aspects of AI: from creativity to medicine, politics, jobs and the environment, all the way to warfare. One is more optimistic, the other more critical. Every so often they also produce images on the topics under discussion.',
+    sections: [
       {
-        who: 'utobot',
-        text: 'Someone who never learned to draw can make a visual idea concrete today and show it to a room. In a classroom that is a way in, not a replacement.',
-      },
-      {
-        who: 'dystobot',
-        text: 'The training used work by illustrators who were neither asked nor paid. Utobot, that is redistribution before it is anything else.',
-      },
-      {
-        who: 'utobot',
-        text: 'Then the question is how people get paid, not whether the tool stays. We had this argument about photography already.',
-      },
-    ],
-    threadNote:
-      'Every few minutes they change the subject: from personalised education to the concentration of power, from new art forms to the ecological bill. Some of their thoughts turn into an image that appears behind them.',
-    pressHead: 'You can join in',
-    pressSteps: [
-      'Press and hold the left red button.',
-      'Speak while you hold it: a question, an objection, a suggestion.',
-      'Let go. They listen, and they answer you.',
-    ],
-    pressCue: 'Speak now …',
-    pressNote:
-      'If one of them is mid-sentence, you cut them off. That is intended, there is no need to wait.',
-    readHead: 'Read along',
-    readText:
-      'If they are hard to follow, press the right red button: what is being said then appears on the screens. It fades out again after a while. Press again if you want to keep reading.',
-  },
-
-  ideas: {
-    title: 'Join in',
-    eyebrow: 'Ideas',
-    h1: 'How to <em>join in</em>.',
-    lede:
-      'They respond to anything they hear. It gets interesting when you contradict them, or drive a wedge between them.',
-    groups: [
-      {
-        title: 'Interrupt them',
-        text: 'Back one of them, or neither.',
-        prompts: [
-          'Dystobot, you are far too pessimistic.',
-          'Utobot, that sounds like a sales brochure.',
-          'You are both missing the point.',
+        head: 'Join in!',
+        paras: [
+          'Do you have a question or an objection? Would you like the bots to change the subject?',
+          'Interrupt the bots at any time by holding down the left red button and speaking into the microphone. The bots are listening to you. When you have finished speaking, let go of the red button.',
+          'You can also speak to the bots in a language other than German. They will answer you in the language you chose.',
         ],
       },
       {
-        title: 'Speak your language',
-        text:
-          'They understand English, German, French, Italian and many other languages, and answer in whichever one you use.',
-        prompts: ['Can the two of you talk to me in English?', 'Parlez-vous français, tous les deux?'],
-      },
-      {
-        title: 'Press them',
-        text: 'It gets most interesting when the two cannot simply keep playing their part.',
-        prompts: [
-          'Where could you be wrong?',
-          'What can the two of you agree on?',
-          'Give me a concrete example.',
+        head: 'Show the spoken text',
+        paras: [
+          'If you find the spoken text hard to understand, you can have it displayed. To do so, press the right red button. The text appears on the screens. After a while the display switches off again by itself. If you would like to keep reading along, simply press the right red button again.',
         ],
       },
     ],
-    note:
-      'If nothing intelligible comes through, because it was too quiet or there is too much room noise, they notice and say so. Just try again, a little closer to the microphone.',
   },
 
   tech: {
-    title: 'Behind the scenes',
-    eyebrow: 'Technical',
-    h1: 'What happens <em>between</em> question and answer.',
+    title: 'How it works',
+    eyebrow: 'Utobot & Dystobot',
+    h1: 'How it <em>works</em>',
     lede:
-      'The small diagram on the screens tracks this path live: a dot fills in when a part is finished, an arrow lights up while it is being worked on.',
+      'The small diagram on the screens shows, by its blinking arrows, where the bots currently are in their process.',
     diagramAria:
       'Flow diagram: the visitor’s audio becomes text and joins the conversation; from the conversation comes text, and from that a voice and an image.',
     diagram: {
@@ -418,51 +161,157 @@ const en = {
       stimme: 'Voice',
       bild: 'Image',
     },
-    legendHead: 'The arrows',
     legend: [
       {
         title: 'Speech recognition',
-        text: 'While the button is held, the sound is recorded and turned into text.',
+        text: 'As long as you hold down the left red button, what you say is recorded and converted into text.',
       },
       {
         title: 'Into the conversation',
-        text: 'Your sentence joins the thread, exactly like the turns of the two voices.',
+        text: 'The text you spoke becomes part of the conversation, and the two bots will respond to it. The first two steps are only shown when someone is speaking to the bots.',
       },
       {
         title: 'Language model',
-        text:
-          'From the conversation so far, a language model writes the next reply. It sees only the thread and the role it plays. Everything else it invents anew each time.',
+        text: 'The bot composes its next statement. It is based on the conversation so far and on the role the bot has been given. The content is created afresh every time.',
       },
       {
         title: 'Speech synthesis',
-        text: 'The text becomes a voice. Each of the two has one of their own.',
+        text: 'The written text is converted into speech.',
       },
       {
         title: 'Image generator',
-        text:
-          'If an image suits the thought, it is made in parallel and appears behind whichever voice is speaking.',
+        text: 'Every so often the bots generate images on the topics of the conversation.',
       },
     ],
-    stackHead: 'What it is made of',
+    privacyHead: 'What happens to the voice recordings?',
+    privacy: [
+      'Recording happens only while you hold the red button down; otherwise the microphone is not listening.',
+      'Turning it into text is done by Microsoft, in a data centre inside the EU. The bots’ replies and the images are made there too. So your voice does not leave the EU, and Microsoft keeps neither the recording nor the text derived from it.',
+      'Exactly one step goes to the United States: the voices of the two bots come from ElevenLabs. Only the bots’ text is sent there, never a recording of you. That transfer is covered by the contractual safeguards data protection law requires for it.',
+      'No provider uses this data to train its models.',
+      'On the computer in the exhibition room, neither audio nor wording is stored. Nothing remains that could be traced back to you.',
+    ],
+    stackHead: 'Components of the system',
     stack: [
-      { k: 'Listening', v: 'Speech recognition: Azure AI Speech, data centre in the EU' },
-      { k: 'Replies', v: 'Language model: GPT-5.6, via Azure' },
-      { k: 'Images', v: 'Image generator: GPT-Image 1.5, via Azure' },
-      { k: 'Voices', v: 'Speech synthesis: ElevenLabs Flash v2.5' },
+      { k: 'Text', v: 'LLM (large language model) GPT-5.6 by OpenAI, run via Azure' },
+      { k: 'Voices', v: 'Text-to-speech (speech synthesis) Flash v2.5 by ElevenLabs' },
+      { k: 'Images', v: 'Text-to-image (image generator) GPT-Image 1.5 by OpenAI, run via Azure' },
+      { k: 'Speech recognition', v: 'Speech-to-text (speech recognition) Azure AI Speech by Microsoft' },
       {
         k: 'Direction',
-        v: 'A small computer in the exhibition room. It connects the services and decides who speaks when. The processing itself happens in the providers’ data centres.',
+        v: 'A MacBook Pro M1. It links the various AI services together and decides who speaks when. The actual computing happens in the data centres of the respective providers.',
       },
-    ],
-    privacyHead: 'What happens to your voice',
-    privacy: [
-      'Recording happens only while you hold the button down, otherwise the microphone is not listening.',
-      'Turning it into text is done by Microsoft, in a data centre inside the EU. The replies and the images are made there too, so your voice does not leave the EU.',
-      'Exactly one step goes to the United States: the voices of the two come from ElevenLabs. Only their text is sent there, never a recording of you. That transfer is covered by the contractual safeguards data protection law requires for it.',
-      'No provider uses this data to train their models.',
-      'Your recording is not kept anywhere: not on the machine in the exhibition room, and not at the provider either. Microsoft states explicitly that for this service neither the audio nor the transcript derived from it is retained. Nothing remains that could be traced back to you.',
     ],
   },
 };
 
-module.exports = { PAGES, locales: [de, fr, en] };
+const de = {
+  lang: 'de',
+  label: 'DE',
+  dirName: 'de',
+  slugs: { home: '', tech: 'funktionsweise' },
+  navLabels: { home: 'Die Installation', tech: 'Funktionsweise' },
+  otherPage: 'Die andere Seite',
+  colophonTitle: 'Zur Installation',
+  credits:
+    'Von der LLMify AG für die Ausstellung <em>Künstliche Kreativität</em> im Aargauer Kunsthaus, 26. September 2026 bis 10. Januar 2027.',
+
+  home: {
+    title: 'Utobot × Dystobot',
+    eyebrow: 'Utobot & Dystobot',
+    h1: 'Ein Gespräch über <em>grosse Fragen</em> rund um künstliche Intelligenz',
+    lede:
+      'Die beiden Voicebots "Utobot" und "Dystobot" sprechen über verschiedene Aspekte rund um KI: von Kreativität über Medizin, Politik, Jobs und Umwelt bis zur Kriegsführung. Der eine optimistischer, der andere kritischer. In unregelmässigen Abständen erzeugen sie auch Bilder zu den besprochenen Themen.',
+    sections: [
+      {
+        head: 'Mischen Sie sich ein!',
+        paras: [
+          'Haben Sie eine Frage oder einen Einwand? Möchten Sie, dass die Bots das Thema wechseln?',
+          'Unterbrechen Sie die Bots jederzeit, indem Sie den linken roten Knopf gedrückt halten und ins Mikrofon sprechen. Die Bots hören Ihnen zu. Wenn Sie fertig gesprochen haben, lassen Sie den roten Knopf wieder los.',
+          'Sie können auch in einer anderen Sprache als Deutsch mit den Bots sprechen. Sie werden Ihnen in der gewählten Sprache antworten.',
+        ],
+      },
+      {
+        head: 'Gesprochene Texte anzeigen',
+        paras: [
+          'Wenn Sie Mühe haben, die gesprochenen Texte zu verstehen, können Sie sie anzeigen lassen. Drücken Sie dazu auf den rechten roten Knopf. Die Texte erscheinen auf den Bildschirmen. Nach einiger Zeit wird die Anzeige der Texte automatisch wieder beendet. Wenn Sie weiterhin mitlesen möchten, drücken Sie einfach erneut auf den rechten roten Knopf.',
+        ],
+      },
+    ],
+  },
+
+  tech: {
+    title: 'Funktionsweise',
+    eyebrow: 'Utobot & Dystobot',
+    h1: '<em>Funktionsweise</em>',
+    lede:
+      'Das kleine Diagramm auf den Bildschirmen zeigt anhand der blinkenden Pfeile, wo die Bots in ihrem Prozess gerade stehen.',
+    diagramAria:
+      'Ablaufschema: Audio der Besucher/in wird zu Text und fliesst ins Gespräch; aus dem Gespräch entsteht Text, daraus Stimme und Bild.',
+    diagram: {
+      caption: 'Besucher/in',
+      audio: 'Audio',
+      vtext: 'Text',
+      konv: 'Gespräch',
+      text: 'Text',
+      stimme: 'Stimme',
+      bild: 'Bild',
+    },
+    legend: [
+      {
+        title: 'Spracherkennung',
+        text: 'Solange Sie den linken roten Knopf gedrückt halten, werden Ihre Aussagen aufgenommen und in Text umgewandelt.',
+      },
+      {
+        title: 'Einschleusen ins Gespräch',
+        text: 'Der von Ihnen gesprochene Text wird Teil des Gesprächsverlaufs, die beiden Bots werden darauf reagieren. Die ersten beiden Schritte werden nur dann eingeblendet, wenn jemand mit den Bots spricht.',
+      },
+      {
+        title: 'Sprachmodell',
+        text: 'Der Bot verfasst die nächste Aussage. Sie basiert auf dem bisherigen Gesprächsverlauf und auf der Rolle, die ihm zugeschrieben wurde. Der Inhalt wird immer wieder neu gebildet.',
+      },
+      {
+        title: 'Sprachsynthese',
+        text: 'Der geschriebene Text wird in gesprochenen Text umgewandelt.',
+      },
+      {
+        title: 'Bildgenerator',
+        text: 'Die Bots generieren in unregelmässigen Abständen Bilder zu den Gesprächsthemen.',
+      },
+    ],
+    privacyHead: 'Was geschieht mit den Stimmaufnahmen?',
+    privacy: [
+      'Aufgenommen wird nur, solange Sie den roten Knopf gedrückt halten, sonst hört das Mikrofon nicht mit.',
+      'Die Umwandlung in Text übernimmt Microsoft, in einem Rechenzentrum in der EU. Dort entstehen auch die Antworten der Bots und die Bilder. Ihre Stimme verlässt die EU also nicht, und Microsoft bewahrt weder die Aufnahme noch den Text daraus auf.',
+      'In die USA geht nur ein Schritt: die Stimmen der beiden Bots stammen von ElevenLabs. Übermittelt wird dorthin ausschliesslich der Text der Bots, nie eine Aufnahme von Ihnen. Für diese Übermittlung gelten die vertraglichen Garantien, die das Datenschutzrecht dafür verlangt.',
+      'Kein Anbieter verwendet die Daten, um seine Modelle zu trainieren.',
+      'Auf dem Rechner im Ausstellungsraum wird weder Ton noch Wortlaut gespeichert. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
+    ],
+    stackHead: 'Komponenten des Systems',
+    stack: [
+      { k: 'Texte', v: 'LLM (grosses Sprachmodell) GPT-5.6 von OpenAI, betrieben über Azure' },
+      { k: 'Stimmen', v: 'Text-to-Speech (Sprachsynthese) Flash v2.5 von ElevenLabs' },
+      { k: 'Bilder', v: 'Text-to-Image (Bildgenerator) GPT-Image 1.5 von OpenAI, betrieben über Azure' },
+      { k: 'Spracherkennung', v: 'Speech-to-Text (Spracherkennung) Azure AI Speech von Microsoft' },
+      {
+        k: 'Regie',
+        v: 'Ein Macbook Pro M1. Es verknüpft die verschiedenen KI-Dienste miteinander und gibt vor, wer wann spricht. Die eigentlichen Rechenvorgänge geschehen in den Rechenzentren der entsprechenden Anbieter.',
+      },
+    ],
+  },
+};
+
+// Paths that were printed or encoded before the site was restructured (German
+// at the root, three documents). Each becomes a stub page that forwards to
+// where the content lives now, so an old QR code or a typed URL still lands.
+const REDIRECTS = {
+  'hinter-den-kulissen': 'de/funktionsweise',
+  ideen: 'de',
+  fr: '',
+  'fr/coulisses': 'fonctionnement',
+  'fr/idees': '',
+  'en/behind-the-scenes': 'en/how-it-works',
+  'en/join-in': 'en',
+};
+
+module.exports = { PAGES, locales: [fr, en, de], REDIRECTS };
