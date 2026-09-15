@@ -84,7 +84,7 @@ const fr = {
     privacyHead: 'Que deviennent les enregistrements vocaux ?',
     privacy: [
       "L'enregistrement n'a lieu que tant que vous maintenez le bouton rouge enfoncé ; sinon, le micro n'écoute pas.",
-      "La conversion en texte est assurée par Microsoft, dans un centre de données situé dans l'UE. C'est là aussi que naissent les réponses des bots et les images. Votre voix ne quitte donc pas l'UE, et Microsoft ne conserve ni l'enregistrement ni le texte qui en est tiré.",
+      "La conversion en texte est assurée par Microsoft, dans un centre de données situé dans l'UE. C'est là aussi que naissent les réponses des bots et les images. Votre voix ne quitte donc pas l'UE. Microsoft ne conserve pas l'enregistrement ; le texte qui en est tiré y reste au plus 30 jours à des fins de détection des abus, puis est supprimé.",
       "Une seule étape passe par les États-Unis : les voix des deux bots viennent d'ElevenLabs. Seul le texte des bots y est transmis, jamais un enregistrement de vous. Ce transfert est couvert par les garanties contractuelles exigées par le droit de la protection des données.",
       "Aucun prestataire n'utilise ces données pour entraîner ses modèles.",
       "Sur l'ordinateur de la salle d'exposition, ni le son ni les paroles ne sont enregistrés. Il ne reste rien qui puisse vous être attribué.",
@@ -174,7 +174,7 @@ const en = {
     privacyHead: 'What happens to the voice recordings?',
     privacy: [
       'Recording happens only while you hold the red button down; otherwise the microphone is not listening.',
-      'Turning it into text is done by Microsoft, in a data centre inside the EU. The bots’ replies and the images are made there too. So your voice does not leave the EU, and Microsoft keeps neither the recording nor the text derived from it.',
+      'Turning it into text is done by Microsoft, in a data centre inside the EU. The bots’ replies and the images are made there too. So your voice does not leave the EU. Microsoft does not keep the recording; the text derived from it is held there for at most 30 days to detect abuse, then deleted.',
       'Exactly one step goes to the United States: the voices of the two bots come from ElevenLabs. Only the bots’ text is sent there, never a recording of you. That transfer is covered by the contractual safeguards data protection law requires for it.',
       'No provider uses this data to train its models.',
       'On the computer in the exhibition room, neither audio nor wording is stored. Nothing remains that could be traced back to you.',
@@ -264,7 +264,7 @@ const de = {
     privacyHead: 'Was geschieht mit den Stimmaufnahmen?',
     privacy: [
       'Aufgenommen wird nur, solange Sie den roten Knopf gedrückt halten, sonst hört das Mikrofon nicht mit.',
-      'Die Umwandlung in Text übernimmt Microsoft, in einem Rechenzentrum in der EU. Dort entstehen auch die Antworten der Bots und die Bilder. Ihre Stimme verlässt die EU also nicht, und Microsoft bewahrt weder die Aufnahme noch den Text daraus auf.',
+      'Die Umwandlung in Text übernimmt Microsoft, in einem Rechenzentrum in der EU. Dort entstehen auch die Antworten der Bots und die Bilder. Ihre Stimme verlässt die EU also nicht. Die Aufnahme bewahrt Microsoft nicht auf; der daraus entstandene Text bleibt dort höchstens 30 Tage zur Missbrauchserkennung und wird dann gelöscht.',
       'In die USA geht nur ein Schritt: die Stimmen der beiden Bots stammen von ElevenLabs. Übermittelt wird dorthin ausschliesslich der Text der Bots, nie eine Aufnahme von Ihnen. Für diese Übermittlung gelten die vertraglichen Garantien, die das Datenschutzrecht dafür verlangt.',
       'Kein Anbieter verwendet die Daten, um seine Modelle zu trainieren.',
       'Auf dem Rechner im Ausstellungsraum wird weder Ton noch Wortlaut gespeichert. Es bleibt nichts zurück, was sich Ihnen zuordnen liesse.',
